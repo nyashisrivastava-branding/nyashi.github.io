@@ -1,0 +1,2240 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nyashi Srivastava · Brand Marketer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700;1,9..144,900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Caveat:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #FBF4E6;
+  --cream-2: #F5E9D2;
+  --paper: #FFFBF3;
+  --peach: #F5C9B5;
+  --peach-2: #FAD9C6;
+  --rose: #E69189;
+  --rose-soft: #EDB0A6;
+  --rose-deep: #BE6B64;
+  --espresso: #3A241A;
+  --mint: #B8D4BE;
+  --butter: #F2D574;
+  --tape: rgba(242, 213, 116, 0.6);
+  --tape-pink: rgba(245, 201, 181, 0.75);
+  --lilac: #D9C7E5;
+  --stamp: #C44A3D;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--espresso);
+  overflow-x: hidden;
+  cursor: none;
+  background-image:
+    radial-gradient(rgba(58, 36, 26, 0.035) 1px, transparent 1px),
+    radial-gradient(rgba(58, 36, 26, 0.022) 1px, transparent 1px);
+  background-size: 38px 38px, 19px 19px;
+  background-position: 0 0, 9px 9px;
+}
+
+/* Grainy paper overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.23 0 0 0 0 0.14 0 0 0 0 0.10 0 0 0 0.08 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  opacity: 0.55;
+  mix-blend-mode: multiply;
+}
+
+/* ── CURSOR ── */
+#cur {
+  width: 12px; height: 12px; background: var(--rose-deep);
+  border-radius: 50%; position: fixed; pointer-events: none;
+  z-index: 9999; top: 0; left: 0;
+  mix-blend-mode: multiply;
+  transition: transform .2s, background .2s;
+}
+#cur-ring {
+  width: 44px; height: 44px; border: 1.5px solid var(--rose-deep);
+  border-radius: 50%; position: fixed; pointer-events: none;
+  z-index: 9998; top: 0; left: 0;
+  transition: transform .2s, border-color .2s;
+}
+.hovering #cur { transform: scale(1.8); background: var(--butter); }
+.hovering #cur-ring { transform: scale(1.3) !important; border-color: var(--rose); }
+
+@media (hover: none) {
+  body { cursor: auto; }
+  #cur, #cur-ring { display: none; }
+}
+
+/* ── PROGRESS ── */
+#prog {
+  position: fixed; top: 0; left: 0; height: 4px;
+  background: linear-gradient(90deg, var(--rose), var(--butter), var(--peach));
+  z-index: 1001; width: 0; transition: width .08s linear;
+  border-radius: 0 4px 4px 0;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 20px 48px;
+  transition: background .3s, box-shadow .3s, padding .3s;
+}
+nav.scrolled {
+  background: rgba(251, 244, 230, 0.82);
+  backdrop-filter: blur(14px);
+  padding: 14px 48px;
+  box-shadow: 0 1px 0 rgba(58, 36, 26, .08);
+}
+.nav-logo {
+  font-family: 'Fraunces', serif;
+  font-size: 22px; font-weight: 700; font-style: italic;
+  color: var(--rose-deep); text-decoration: none;
+  letter-spacing: -.02em;
+}
+.nav-logo::after {
+  content: '.'; color: var(--rose); font-size: 28px;
+}
+.nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+.nav-links a {
+  font-size: 13px; font-weight: 500; color: var(--espresso);
+  text-decoration: none; opacity: .65; letter-spacing: .02em;
+  transition: opacity .2s, color .2s; position: relative;
+}
+.nav-links a:hover { opacity: 1; color: var(--rose-deep); }
+.nav-cta {
+  background: var(--rose-deep); color: var(--cream) !important;
+  padding: 10px 22px; border-radius: 100px;
+  opacity: 1 !important;
+  transition: transform .2s, background .2s !important;
+  border: 1.5px solid var(--espresso);
+  box-shadow: 3px 3px 0 var(--espresso);
+}
+.nav-cta:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--espresso);
+  background: var(--rose) !important;
+}
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 140px 60px 100px;
+  position: relative; overflow: hidden;
+}
+
+/* Decorative floating stickers in hero */
+.sticker {
+  position: absolute; pointer-events: none;
+  font-family: 'Caveat', cursive; font-weight: 700;
+  animation: floatSticker 6s ease-in-out infinite;
+}
+.sticker.s1 {
+  top: 18%; left: 8%; font-size: 18px;
+  background: var(--butter); padding: 12px 20px;
+  border-radius: 50%; transform: rotate(-12deg);
+  color: var(--espresso);
+  box-shadow: 3px 3px 0 rgba(58, 36, 26, 0.15);
+  animation-delay: 0s;
+}
+.sticker.s2 {
+  top: 22%; right: 10%; font-size: 16px;
+  background: var(--rose-soft); padding: 14px 18px;
+  border: 1.5px dashed var(--rose-deep); border-radius: 8px;
+  transform: rotate(8deg); color: var(--rose-deep);
+  animation-delay: 1s;
+}
+.sticker.s3 {
+  bottom: 18%; left: 12%; font-size: 15px;
+  background: var(--mint); padding: 10px 18px;
+  border-radius: 20px 4px 20px 4px;
+  transform: rotate(-6deg); color: var(--espresso);
+  animation-delay: 2s;
+  box-shadow: 2px 2px 0 rgba(58, 36, 26, 0.15);
+}
+.sticker.s4 {
+  bottom: 22%; right: 8%; font-size: 38px;
+  transform: rotate(12deg);
+  animation-delay: 1.5s;
+}
+.sticker.s5 {
+  top: 45%; left: 4%; font-size: 32px;
+  transform: rotate(-20deg);
+  animation-delay: 0.7s;
+}
+.sticker.s6 {
+  top: 50%; right: 5%; font-size: 26px;
+  animation-delay: 2.3s;
+}
+
+@keyframes floatSticker {
+  0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+  50% { transform: translateY(-14px) rotate(var(--r, 0deg)); }
+}
+
+/* Hero polaroid photo */
+.hero-polaroid {
+  background: var(--paper);
+  padding: 14px 14px 52px;
+  border-radius: 3px;
+  box-shadow:
+    0 2px 4px rgba(58, 36, 26, 0.08),
+    0 20px 40px rgba(58, 36, 26, 0.15);
+  transform: rotate(-4deg);
+  margin-bottom: 36px;
+  position: relative;
+  transition: transform .4s cubic-bezier(.4,0,.2,1);
+  animation: floatPhoto 5s ease-in-out infinite;
+}
+.hero-polaroid:hover {
+  transform: rotate(0deg) scale(1.05);
+}
+.hero-polaroid .photo-inner {
+  width: 180px; height: 210px;
+  background: linear-gradient(135deg, var(--peach), var(--rose-soft));
+  border-radius: 2px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 72px;
+  overflow: hidden;
+}
+.hero-polaroid .photo-inner img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.hero-polaroid .caption {
+  position: absolute; bottom: 14px; left: 0; right: 0;
+  font-family: 'Caveat', cursive; font-weight: 500;
+  font-size: 19px; color: var(--rose-deep);
+  text-align: center;
+}
+.hero-polaroid::before {
+  content: ''; position: absolute;
+  top: -14px; left: 40%;
+  width: 90px; height: 28px;
+  background: var(--tape);
+  transform: rotate(-3deg);
+  box-shadow: 0 2px 4px rgba(58, 36, 26, 0.08);
+}
+
+@keyframes floatPhoto {
+  0%, 100% { transform: rotate(-4deg) translateY(0); }
+  50% { transform: rotate(-4deg) translateY(-8px); }
+}
+
+.hero-eyebrow {
+  font-size: 12px; font-weight: 600;
+  letter-spacing: .28em; text-transform: uppercase;
+  color: var(--rose-deep); opacity: .75;
+  margin-bottom: 20px;
+  display: inline-flex; align-items: center; gap: 14px;
+}
+.hero-eyebrow::before, .hero-eyebrow::after {
+  content: ''; width: 28px; height: 1px;
+  background: var(--rose-deep); opacity: .5;
+}
+
+.hero-name {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(68px, 13vw, 180px);
+  font-weight: 700; line-height: .88;
+  color: var(--rose-deep);
+  margin-bottom: 28px;
+  letter-spacing: -.035em;
+  position: relative;
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+}
+.hero-name .italic {
+  font-style: italic; font-weight: 500;
+  color: var(--rose);
+  display: inline-block;
+}
+.hero-name::after {
+  content: '';
+  position: absolute;
+  bottom: -8px; left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 60%; height: 14px;
+  background: var(--butter);
+  z-index: -1;
+  border-radius: 50%;
+  opacity: .6;
+}
+
+.hero-sub {
+  font-size: clamp(16px, 2vw, 21px);
+  font-weight: 400; line-height: 1.65;
+  color: var(--espresso); opacity: .82;
+  max-width: 560px; margin: 0 auto 44px;
+}
+.hero-sub em {
+  font-family: 'Fraunces', serif; font-style: italic;
+  color: var(--rose-deep); font-weight: 500;
+  background: var(--butter);
+  padding: 0 8px;
+  border-radius: 4px;
+}
+
+.cta-group { display: inline-flex; align-items: center; gap: 18px; flex-wrap: wrap; justify-content: center; }
+
+.cta-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 14px; font-weight: 600;
+  text-decoration: none;
+  background: var(--espresso); color: var(--cream);
+  padding: 14px 28px;
+  border-radius: 100px;
+  border: 1.5px solid var(--espresso);
+  box-shadow: 4px 4px 0 var(--rose-deep);
+  transition: transform .2s, box-shadow .2s, background .2s;
+}
+.cta-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--rose-deep);
+  background: var(--rose-deep);
+}
+.cta-btn.secondary {
+  background: transparent; color: var(--espresso);
+  box-shadow: 4px 4px 0 var(--butter);
+}
+.cta-btn.secondary:hover {
+  box-shadow: 6px 6px 0 var(--butter);
+  background: var(--butter);
+}
+
+/* ── MARQUEE (washi tape style) ── */
+.marquee-band {
+  background: var(--rose-deep);
+  padding: 14px 0;
+  overflow: hidden; white-space: nowrap;
+  position: relative;
+  border-top: 2px dashed var(--cream);
+  border-bottom: 2px dashed var(--cream);
+  transform: rotate(-1.5deg);
+  margin: 20px -30px;
+  box-shadow: 0 10px 30px rgba(58, 36, 26, 0.12);
+}
+.marquee-inner { display: inline-flex; animation: scroll-left 28s linear infinite; }
+.marquee-inner span {
+  font-family: 'Fraunces', serif;
+  font-size: 22px; font-weight: 500; font-style: italic;
+  color: var(--cream);
+  padding: 0 28px;
+}
+.marquee-inner .dot {
+  color: var(--butter); padding: 0 6px;
+  font-style: normal;
+}
+@keyframes scroll-left { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+
+/* ── SECTION BASE ── */
+.section {
+  padding: 120px 64px;
+  position: relative;
+  z-index: 2;
+}
+.s-label {
+  display: inline-block;
+  font-family: 'Caveat', cursive; font-weight: 700;
+  font-size: 24px; color: var(--rose-deep);
+  margin-bottom: 10px; letter-spacing: .02em;
+  position: relative;
+  transform: rotate(-2deg);
+}
+.s-label::before {
+  content: '✦ ';
+  color: var(--butter);
+}
+.s-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(36px, 5vw, 72px);
+  font-weight: 700; line-height: 1.05;
+  margin-bottom: 48px;
+  letter-spacing: -.025em;
+  color: var(--espresso);
+}
+.s-title .italic {
+  font-style: italic; font-weight: 500;
+  color: var(--rose-deep);
+}
+.s-title .underline {
+  position: relative; display: inline-block;
+}
+.s-title .underline::after {
+  content: '';
+  position: absolute; bottom: -2px; left: -4px; right: -4px;
+  height: 12px; background: var(--butter);
+  z-index: -1; opacity: .7;
+  border-radius: 8px;
+  transform: rotate(-.5deg);
+}
+
+/* ── NUMBERS (sticky note stats) ── */
+#numbers { background: var(--cream); }
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px 22px;
+}
+.stat-c {
+  border-radius: 6px;
+  padding: 32px 26px 28px;
+  transition: transform .3s cubic-bezier(.4,0,.2,1), box-shadow .3s;
+  position: relative;
+  box-shadow: 4px 5px 14px rgba(58, 36, 26, 0.1);
+  border: 1px solid rgba(58, 36, 26, 0.04);
+}
+.stat-c:nth-child(1) { background: var(--peach); transform: rotate(-1.5deg); }
+.stat-c:nth-child(2) { background: var(--butter); transform: rotate(1.2deg); }
+.stat-c:nth-child(3) { background: var(--rose-soft); transform: rotate(-.8deg); }
+.stat-c:nth-child(4) { background: var(--mint); transform: rotate(1.6deg); }
+.stat-c:nth-child(5) { background: var(--lilac); transform: rotate(-1.2deg); }
+.stat-c:nth-child(6) { background: var(--peach-2); transform: rotate(.6deg); }
+.stat-c:nth-child(7) { background: var(--butter); transform: rotate(-2deg); }
+.stat-c:nth-child(8) { background: var(--rose-soft); transform: rotate(1.4deg); }
+
+.stat-c::before {
+  content: '';
+  position: absolute; top: -14px; left: 50%;
+  width: 68px; height: 22px;
+  background: var(--tape);
+  transform: translateX(-50%) rotate(-3deg);
+  box-shadow: 0 2px 3px rgba(58, 36, 26, 0.1);
+}
+.stat-c:hover {
+  transform: rotate(0deg) translateY(-10px) scale(1.04) !important;
+  box-shadow: 8px 14px 28px rgba(58, 36, 26, 0.18);
+  z-index: 5;
+}
+.s-num {
+  font-family: 'Fraunces', serif;
+  font-size: 54px; font-weight: 700; line-height: 1;
+  color: var(--espresso); margin-bottom: 10px;
+}
+.s-desc {
+  font-size: 13.5px; color: var(--espresso);
+  opacity: .78; line-height: 1.5;
+}
+
+/* ── ABOUT ── */
+#about {
+  background:
+    linear-gradient(var(--cream-2), var(--cream-2)),
+    repeating-linear-gradient(transparent, transparent 29px, rgba(58, 36, 26, 0.06) 29px, rgba(58, 36, 26, 0.06) 30px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+  position: relative;
+}
+#about::before {
+  /* red margin line like notebook */
+  content: '';
+  position: absolute; top: 0; bottom: 0;
+  left: 90px; width: 1.5px;
+  background: var(--rose); opacity: .4;
+}
+
+.about-quote {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(24px, 2.8vw, 38px);
+  font-style: italic; font-weight: 500;
+  line-height: 1.35;
+  margin-bottom: 28px;
+  color: var(--rose-deep);
+  position: relative;
+}
+.about-quote::before {
+  content: '“';
+  position: absolute; top: -26px; left: -24px;
+  font-size: 80px; color: var(--rose);
+  opacity: .35; font-family: 'Fraunces', serif;
+  line-height: 1;
+}
+.about-body {
+  font-size: 15.5px; line-height: 1.85;
+  opacity: .82; margin-bottom: 22px;
+}
+.about-body strong { color: var(--rose-deep); font-weight: 600; }
+
+.beliefs { display: flex; flex-direction: column; gap: 14px; margin-top: 28px; }
+.belief {
+  display: flex; align-items: flex-start; gap: 14px;
+  background: var(--paper);
+  border-radius: 6px;
+  padding: 18px 22px;
+  font-size: 14.5px; line-height: 1.55;
+  box-shadow: 3px 4px 10px rgba(58, 36, 26, 0.08);
+  transition: transform .25s;
+  position: relative;
+}
+.belief:nth-child(1) { transform: rotate(-.6deg); }
+.belief:nth-child(2) { transform: rotate(.4deg); }
+.belief:nth-child(3) { transform: rotate(-.3deg); }
+.belief:hover { transform: rotate(0deg) translateX(6px); }
+.b-icon {
+  font-size: 22px; flex-shrink: 0; margin-top: 2px;
+  filter: drop-shadow(0 2px 2px rgba(58, 36, 26, 0.12));
+}
+
+/* About polaroid spread */
+.about-vis {
+  display: flex; align-items: center; justify-content: center;
+  position: relative; min-height: 480px;
+}
+.about-polaroid {
+  position: absolute;
+  background: var(--paper);
+  padding: 12px 12px 44px;
+  border-radius: 3px;
+  box-shadow: 0 14px 32px rgba(58, 36, 26, 0.18);
+  transition: transform .4s cubic-bezier(.4,0,.2,1);
+}
+.about-polaroid .ap-img {
+  width: 200px; height: 240px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 78px;
+  overflow: hidden;
+}
+.about-polaroid .ap-cap {
+  position: absolute; bottom: 10px; left: 0; right: 0;
+  font-family: 'Caveat', cursive; font-weight: 500;
+  font-size: 17px; color: var(--rose-deep);
+  text-align: center;
+}
+.about-polaroid.p1 {
+  transform: rotate(-6deg) translate(-70px, -40px);
+  background: var(--paper);
+}
+.about-polaroid.p1 .ap-img { background: linear-gradient(135deg, var(--peach), var(--rose-soft)); }
+.about-polaroid.p1::before {
+  content: ''; position: absolute; top: -12px; left: 30%;
+  width: 80px; height: 24px;
+  background: var(--tape); transform: rotate(-6deg);
+}
+.about-polaroid.p2 {
+  transform: rotate(5deg) translate(90px, 60px);
+}
+.about-polaroid.p2 .ap-img { background: linear-gradient(135deg, var(--butter), var(--peach-2)); }
+.about-polaroid.p2::before {
+  content: ''; position: absolute; top: -10px; right: 20%;
+  width: 70px; height: 24px;
+  background: var(--tape-pink); transform: rotate(5deg);
+}
+.about-polaroid:hover {
+  transform: rotate(0deg) scale(1.05) !important;
+  z-index: 5;
+}
+
+.about-badge {
+  position: absolute;
+  bottom: 20px; left: 50%;
+  transform: translateX(-50%) rotate(-8deg);
+  background: var(--stamp); color: var(--cream);
+  width: 110px; height: 110px;
+  border-radius: 50%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  font-family: 'Fraunces', serif;
+  font-size: 11px; font-weight: 700;
+  text-align: center; line-height: 1.4;
+  letter-spacing: .08em; text-transform: uppercase;
+  border: 2px dashed var(--cream);
+  box-shadow: 4px 4px 0 var(--espresso);
+  z-index: 3;
+}
+
+/* ── PROJECTS ── */
+#projects { background: var(--cream); }
+.proj-header {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-bottom: 60px; flex-wrap: wrap; gap: 24px;
+}
+.proj-hint {
+  font-family: 'Caveat', cursive;
+  font-size: 22px; color: var(--rose-deep);
+  max-width: 260px; line-height: 1.4;
+  transform: rotate(-2deg);
+  position: relative;
+}
+.proj-hint::before {
+  content: '↓';
+  display: inline-block;
+  margin-right: 8px;
+  animation: bounceArrow 2s ease-in-out infinite;
+}
+@keyframes bounceArrow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+.proj-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px 28px;
+}
+.p-card {
+  background: var(--paper);
+  border-radius: 4px;
+  padding: 16px 16px 80px;
+  min-height: 380px;
+  cursor: pointer; position: relative;
+  box-shadow: 0 6px 22px rgba(58, 36, 26, 0.12);
+  transition: transform .35s cubic-bezier(.4,0,.2,1), box-shadow .35s;
+  overflow: visible;
+}
+.p-card:nth-child(1) { transform: rotate(-1.8deg); }
+.p-card:nth-child(2) { transform: rotate(1.2deg); }
+.p-card:nth-child(3) { transform: rotate(-.6deg); }
+.p-card:nth-child(4) { transform: rotate(1.6deg); }
+.p-card:nth-child(5) { transform: rotate(-1.2deg); }
+.p-card:nth-child(6) { transform: rotate(.8deg); }
+
+.p-card::before {
+  content: '';
+  position: absolute; top: -14px; left: 50%;
+  width: 110px; height: 26px;
+  background: var(--tape);
+  transform: translateX(-50%) rotate(-3deg);
+  box-shadow: 0 2px 4px rgba(58, 36, 26, 0.1);
+  transition: transform .35s;
+}
+.p-card:nth-child(2n)::before { background: var(--tape-pink); }
+
+.p-card:hover {
+  transform: rotate(0deg) translateY(-12px) scale(1.03) !important;
+  box-shadow: 0 22px 50px rgba(58, 36, 26, 0.22);
+  z-index: 8;
+}
+.p-card:hover::before { transform: translateX(-50%) rotate(-1deg) scale(1.08); }
+
+.p-img {
+  width: 100%; height: 190px;
+  border-radius: 2px;
+  margin-bottom: 22px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 62px;
+  position: relative;
+  overflow: hidden;
+}
+.p-card:nth-child(1) .p-img { background: linear-gradient(135deg, var(--peach), var(--rose-soft)); }
+.p-card:nth-child(2) .p-img { background: linear-gradient(135deg, var(--espresso), var(--rose-deep)); color: var(--cream); }
+.p-card:nth-child(3) .p-img { background: linear-gradient(135deg, var(--butter), var(--peach-2)); }
+.p-card:nth-child(4) .p-img { background: linear-gradient(135deg, var(--lilac), var(--rose-soft)); }
+.p-card:nth-child(5) .p-img { background: linear-gradient(135deg, var(--mint), var(--peach-2)); }
+.p-card:nth-child(6) .p-img { background: linear-gradient(135deg, var(--rose-deep), var(--espresso)); color: var(--cream); }
+
+.p-arrow {
+  position: absolute; bottom: 22px; right: 22px;
+  width: 42px; height: 42px;
+  background: var(--espresso); color: var(--cream);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  transition: transform .25s, background .25s;
+}
+.p-card:hover .p-arrow {
+  transform: rotate(-45deg) scale(1.15);
+  background: var(--rose-deep);
+}
+
+.p-tag {
+  font-family: 'Caveat', cursive;
+  font-size: 18px; color: var(--rose-deep);
+  margin-bottom: 8px;
+  padding: 0 8px;
+}
+.p-title {
+  font-family: 'Fraunces', serif;
+  font-size: 24px; font-weight: 700;
+  line-height: 1.2; margin-bottom: 10px;
+  color: var(--espresso);
+  padding: 0 8px;
+}
+.p-desc {
+  font-size: 13.5px; opacity: .72;
+  line-height: 1.65;
+  padding: 0 8px;
+}
+.p-metric {
+  position: absolute; bottom: 22px; left: 22px;
+  font-family: 'Fraunces', serif;
+  font-size: 36px; font-weight: 700;
+  color: var(--rose-deep);
+  line-height: 1;
+}
+
+/* DRAWER */
+.overlay {
+  position: fixed; inset: 0;
+  background: rgba(58, 36, 26, .42);
+  backdrop-filter: blur(6px);
+  z-index: 500;
+  opacity: 0; pointer-events: none;
+  transition: opacity .3s;
+}
+.overlay.on { opacity: 1; pointer-events: all; }
+.drawer {
+  position: fixed; top: 0; right: 0;
+  width: min(560px, 92vw); height: 100vh;
+  background: var(--paper);
+  z-index: 501;
+  transform: translateX(105%);
+  transition: transform .45s cubic-bezier(.4,0,.2,1);
+  overflow-y: auto;
+  padding: 72px 48px 48px;
+  border-left: 3px solid var(--espresso);
+}
+.drawer.on { transform: translateX(0); }
+.drawer::before {
+  /* spiral binding */
+  content: '';
+  position: absolute; top: 0; bottom: 0; left: 0;
+  width: 30px;
+  background-image: radial-gradient(circle, var(--espresso) 0 3px, transparent 4px);
+  background-size: 20px 30px;
+  background-position: center 15px;
+  background-repeat: repeat-y;
+  opacity: .4;
+}
+.d-close {
+  position: absolute; top: 22px; right: 22px;
+  background: var(--rose-deep); border: none;
+  width: 40px; height: 40px; border-radius: 50%;
+  font-size: 18px; cursor: none;
+  color: var(--cream);
+  transition: transform .2s, background .2s;
+}
+.d-close:hover { transform: rotate(90deg); background: var(--espresso); }
+.d-tag {
+  font-family: 'Caveat', cursive;
+  font-size: 20px; color: var(--rose-deep);
+  margin-bottom: 10px;
+}
+.d-title {
+  font-family: 'Fraunces', serif;
+  font-size: 38px; font-weight: 700;
+  margin-bottom: 32px; line-height: 1.1;
+  letter-spacing: -.02em;
+}
+.d-slabel {
+  font-family: 'Caveat', cursive;
+  font-size: 18px; color: var(--rose-deep);
+  margin-top: 30px; margin-bottom: 10px;
+  display: inline-block;
+  background: var(--butter);
+  padding: 2px 12px; border-radius: 4px;
+  transform: rotate(-1deg);
+}
+.d-text {
+  font-size: 15px; line-height: 1.8;
+  opacity: .85;
+}
+.d-list {
+  list-style: none; padding: 0; margin: 6px 0 4px;
+}
+.d-list li {
+  position: relative;
+  padding: 10px 0 10px 28px;
+  font-size: 14.5px; line-height: 1.65;
+  opacity: .88;
+  border-bottom: 1px dashed rgba(58, 36, 26, 0.12);
+}
+.d-list li:last-child { border-bottom: none; }
+.d-list li::before {
+  content: '✦';
+  position: absolute; left: 2px; top: 11px;
+  color: var(--rose-deep);
+  font-size: 14px;
+}
+.d-links {
+  display: flex; flex-wrap: wrap;
+  gap: 10px; margin: 4px 0 8px;
+}
+.d-link-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--butter);
+  color: var(--espresso);
+  text-decoration: none;
+  padding: 10px 18px;
+  border-radius: 100px;
+  font-size: 13px; font-weight: 600;
+  border: 1.5px dashed var(--espresso);
+  transition: transform .2s, background .2s;
+}
+.d-link-pill:hover {
+  background: var(--rose-soft);
+  transform: translate(-2px, -2px);
+}
+.d-media {
+  display: flex; flex-direction: column; gap: 14px;
+  margin: 6px 0 4px;
+  background: var(--cream-2);
+  border: 1px dashed rgba(58, 36, 26, 0.25);
+  border-radius: 8px;
+  padding: 18px;
+  min-height: 60px;
+  font-size: 13px;
+  color: rgba(58, 36, 26, 0.55);
+}
+.d-media img,
+.d-media video,
+.d-media iframe {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(58, 36, 26, 0.12);
+}
+.d-media:empty::before,
+.d-media:has(> :only-child:is(script))::before { content: ''; }
+.d-metrics {
+  display: flex; flex-wrap: wrap; gap: 12px;
+  margin-top: 18px;
+}
+.d-met {
+  background: var(--peach-2);
+  border-radius: 6px;
+  padding: 18px 22px;
+  min-width: 120px;
+  transform: rotate(-1deg);
+  transition: transform .2s;
+}
+.d-met:nth-child(2n) { background: var(--butter); transform: rotate(1.2deg); }
+.d-met:nth-child(3n) { background: var(--mint); transform: rotate(-.6deg); }
+.d-met:hover { transform: rotate(0) scale(1.05); }
+.d-met-n {
+  font-family: 'Fraunces', serif;
+  font-size: 32px; font-weight: 700;
+  display: block; line-height: 1;
+  margin-bottom: 6px; color: var(--espresso);
+}
+.d-met-l { font-size: 11.5px; opacity: .65; }
+
+/* ── PROCESS ── */
+#process {
+  background: var(--espresso);
+  color: var(--cream);
+  position: relative;
+}
+#process::before {
+  /* ruled paper effect inverted */
+  content: '';
+  position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(transparent, transparent 29px, rgba(251, 244, 230, 0.05) 29px, rgba(251, 244, 230, 0.05) 30px);
+  pointer-events: none;
+}
+#process .s-label { color: var(--butter); }
+#process .s-title { color: var(--cream); }
+#process .s-title .italic { color: var(--peach); }
+#process .s-title .underline::after { background: var(--rose-deep); }
+
+.proc-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  position: relative;
+}
+.proc-c {
+  background: rgba(251, 244, 230, 0.04);
+  border: 1.5px solid rgba(251, 244, 230, 0.15);
+  border-radius: 12px;
+  padding: 36px 28px;
+  transition: transform .3s, background .3s, border-color .3s;
+  position: relative;
+}
+.proc-c::before {
+  /* pin */
+  content: '';
+  position: absolute; top: -10px; left: 28px;
+  width: 18px; height: 18px;
+  background: radial-gradient(circle at 35% 30%, var(--rose), var(--rose-deep));
+  border-radius: 50%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4),
+              inset -2px -2px 4px rgba(0, 0, 0, 0.2),
+              inset 2px 2px 4px rgba(255, 255, 255, 0.25);
+}
+.proc-c:hover {
+  background: rgba(251, 244, 230, 0.08);
+  border-color: var(--peach);
+  transform: translateY(-8px) rotate(-1deg);
+}
+.proc-n {
+  font-family: 'Fraunces', serif;
+  font-size: 64px; font-weight: 900; font-style: italic;
+  color: var(--rose);
+  opacity: .65;
+  line-height: 1; margin-bottom: 18px;
+  letter-spacing: -.04em;
+}
+.proc-t {
+  font-family: 'Fraunces', serif;
+  font-size: 22px; font-weight: 700;
+  color: var(--cream); margin-bottom: 14px;
+}
+.proc-b {
+  font-size: 13.5px; color: var(--cream);
+  opacity: .72; line-height: 1.72;
+}
+
+/* ── SPECIAL ── */
+#special {
+  background: linear-gradient(180deg, var(--peach-2), var(--peach));
+  position: relative;
+}
+.spec-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.spec-c {
+  background: var(--paper);
+  border-radius: 6px;
+  padding: 42px 34px 38px;
+  box-shadow: 0 10px 28px rgba(58, 36, 26, 0.14);
+  transition: transform .3s, box-shadow .3s;
+  position: relative;
+}
+.spec-c:nth-child(1) { transform: rotate(-1.4deg); }
+.spec-c:nth-child(2) { transform: rotate(.8deg); }
+.spec-c:nth-child(3) { transform: rotate(-.6deg); }
+.spec-c:hover {
+  transform: rotate(0) translateY(-10px) !important;
+  box-shadow: 0 22px 50px rgba(58, 36, 26, 0.22);
+}
+.spec-c::before {
+  content: '';
+  position: absolute; top: -14px; left: 40%;
+  width: 100px; height: 26px;
+  background: var(--tape-pink);
+  transform: rotate(-3deg);
+}
+.spec-icon {
+  font-size: 44px; margin-bottom: 22px;
+  display: inline-block;
+  filter: drop-shadow(0 4px 4px rgba(58, 36, 26, 0.15));
+}
+.spec-t {
+  font-family: 'Fraunces', serif;
+  font-size: 24px; font-weight: 700;
+  margin-bottom: 6px; line-height: 1.2;
+  color: var(--espresso);
+}
+.spec-d {
+  font-family: 'Caveat', cursive;
+  font-size: 17px;
+  color: var(--rose-deep);
+  margin-bottom: 20px;
+}
+.spec-body {
+  font-size: 14px; opacity: .8;
+  line-height: 1.7;
+}
+.spec-badge {
+  display: inline-block;
+  background: var(--butter);
+  border: 1.5px dashed var(--espresso);
+  border-radius: 100px;
+  padding: 7px 16px;
+  font-size: 11.5px; font-weight: 700;
+  color: var(--espresso);
+  margin-top: 22px;
+  letter-spacing: .06em;
+  transform: rotate(-2deg);
+}
+
+/* ── GROWTH ── */
+#growth {
+  background: var(--cream);
+  position: relative;
+}
+.grow-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.grow-c {
+  background: var(--paper);
+  border-radius: 4px;
+  padding: 30px 28px;
+  box-shadow: 0 6px 18px rgba(58, 36, 26, 0.1);
+  transition: transform .3s, box-shadow .3s;
+  position: relative;
+  border: 1px solid rgba(58, 36, 26, 0.05);
+}
+.grow-c:nth-child(1) { transform: rotate(-.8deg); }
+.grow-c:nth-child(2) { transform: rotate(.6deg); }
+.grow-c:nth-child(3) { transform: rotate(-.3deg); }
+.grow-c:nth-child(4) { transform: rotate(1deg); }
+.grow-c:nth-child(5) { transform: rotate(-.6deg); }
+.grow-c:nth-child(6) { transform: rotate(.4deg); }
+
+.grow-c::before {
+  /* corner fold */
+  content: '';
+  position: absolute; bottom: 0; right: 0;
+  width: 32px; height: 32px;
+  background: linear-gradient(135deg, transparent 50%, var(--cream-2) 50%);
+  border-radius: 0 0 4px 0;
+}
+.grow-c:hover {
+  transform: rotate(0) translateY(-6px) !important;
+  box-shadow: 0 14px 30px rgba(58, 36, 26, 0.16);
+}
+.grow-emoji {
+  display: inline-block; font-size: 28px;
+  margin-bottom: 12px;
+  filter: drop-shadow(0 2px 3px rgba(58, 36, 26, 0.12));
+}
+.grow-t {
+  font-family: 'Fraunces', serif;
+  font-weight: 700; font-size: 17px;
+  margin-bottom: 10px;
+  color: var(--espresso);
+}
+.grow-b {
+  font-size: 13.5px; opacity: .75;
+  line-height: 1.7;
+}
+
+/* ── INSTAGRAM FEATURE ── */
+.ig-section {
+  background: linear-gradient(180deg, var(--cream) 0%, var(--peach-2) 100%);
+  padding: 120px 64px;
+  position: relative;
+}
+.ig-head {
+  max-width: 800px;
+  margin: 0 auto 56px;
+  text-align: center;
+}
+.ig-head .s-title { margin-bottom: 22px; }
+.ig-sub {
+  font-size: 15px; line-height: 1.7;
+  color: var(--espresso); opacity: .75;
+  max-width: 620px; margin: 0 auto 32px;
+}
+.ig-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--rose-deep); color: var(--cream);
+  padding: 14px 30px; border-radius: 100px;
+  text-decoration: none; font-size: 14px; font-weight: 600;
+  border: 1.5px solid var(--espresso);
+  box-shadow: 4px 4px 0 var(--espresso);
+  transition: transform .2s, box-shadow .2s, background .2s;
+}
+.ig-cta:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--espresso);
+  background: var(--rose);
+}
+.ig-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.ig-tile {
+  aspect-ratio: 1 / 1;
+  background: var(--paper);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 10px 26px rgba(58, 36, 26, 0.12);
+  transition: transform .35s cubic-bezier(.4,0,.2,1), box-shadow .35s;
+  position: relative;
+  cursor: none;
+}
+.ig-tile:nth-child(1) { transform: rotate(-1.5deg); }
+.ig-tile:nth-child(2) { transform: rotate(1deg); }
+.ig-tile:nth-child(3) { transform: rotate(-.8deg); }
+.ig-tile:nth-child(4) { transform: rotate(1.4deg); }
+.ig-tile:nth-child(5) { transform: rotate(-1.2deg); }
+.ig-tile:nth-child(6) { transform: rotate(.6deg); }
+.ig-tile::before {
+  content: '';
+  position: absolute; top: -12px; left: 40%;
+  width: 90px; height: 22px;
+  background: var(--tape-pink);
+  transform: rotate(-3deg);
+  z-index: 2;
+  box-shadow: 0 2px 3px rgba(58, 36, 26, 0.1);
+}
+.ig-tile:nth-child(2n)::before { background: var(--tape); left: 50%; }
+.ig-tile:hover {
+  transform: rotate(0) translateY(-8px) scale(1.02) !important;
+  box-shadow: 0 22px 46px rgba(58, 36, 26, 0.22);
+  z-index: 5;
+}
+.ig-tile img,
+.ig-tile video,
+.ig-tile iframe {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  border: 0;
+  display: block;
+}
+.ig-placeholder {
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg, var(--peach) 0%, var(--rose-soft) 100%);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 8px; padding: 20px;
+  text-align: center;
+}
+.ig-tile:nth-child(2n) .ig-placeholder {
+  background: linear-gradient(135deg, var(--butter) 0%, var(--peach-2) 100%);
+}
+.ig-tile:nth-child(3n) .ig-placeholder {
+  background: linear-gradient(135deg, var(--lilac) 0%, var(--rose-soft) 100%);
+}
+.ig-emoji {
+  font-size: 56px;
+  filter: drop-shadow(0 3px 6px rgba(58, 36, 26, 0.2));
+}
+.ig-caption {
+  font-family: 'Fraunces', serif;
+  font-size: 18px; font-weight: 700;
+  color: var(--espresso);
+  margin-top: 4px;
+}
+.ig-hint {
+  font-family: 'Caveat', cursive;
+  font-size: 14px;
+  color: var(--rose-deep);
+  opacity: .75;
+}
+@media (max-width: 900px) {
+  .ig-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .ig-grid { grid-template-columns: 1fr; }
+  .ig-section { padding: 80px 28px; }
+}
+
+/* ── TAKE WHAT YOU NEED strip ── */
+.take-strip {
+  background: var(--paper);
+  padding: 48px 64px 64px;
+  margin: 80px auto;
+  max-width: 900px;
+  border-radius: 6px;
+  box-shadow: 0 12px 36px rgba(58, 36, 26, 0.12);
+  transform: rotate(-1deg);
+  position: relative;
+  text-align: center;
+}
+.take-strip::before {
+  content: ''; position: absolute; top: -14px; left: 50%;
+  width: 120px; height: 26px;
+  background: var(--tape);
+  transform: translateX(-50%) rotate(-2deg);
+}
+.take-strip h3 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(30px, 4vw, 52px);
+  font-style: italic; font-weight: 500;
+  margin-bottom: 8px;
+  color: var(--rose-deep);
+}
+.take-strip p {
+  font-family: 'Caveat', cursive;
+  font-size: 22px; color: var(--espresso);
+  opacity: .7; margin-bottom: 32px;
+}
+.tabs-row {
+  display: flex; justify-content: center;
+  gap: 0; flex-wrap: wrap;
+}
+.tab-strip {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  padding: 36px 14px 18px;
+  background: var(--cream-2);
+  border-left: 2px dashed var(--rose-deep);
+  font-family: 'Caveat', cursive;
+  font-size: 17px;
+  color: var(--espresso);
+  transition: transform .25s, background .25s;
+  cursor: none;
+}
+.tab-strip:first-child { border-left: none; }
+.tab-strip:nth-child(2n) { background: var(--peach-2); }
+.tab-strip:nth-child(3n) { background: var(--butter); }
+.tab-strip:hover {
+  transform: rotate(180deg) translateY(8px);
+  background: var(--rose-soft);
+}
+
+/* ── CONTACT ── */
+#contact {
+  background: var(--espresso);
+  text-align: center;
+  padding: 140px 64px;
+  position: relative;
+  overflow: hidden;
+  color: var(--cream);
+}
+#contact::before {
+  /* scalloped top */
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 20px;
+  background:
+    radial-gradient(circle at 10px 0, var(--cream) 10px, transparent 11px);
+  background-size: 20px 20px;
+  background-repeat: repeat-x;
+}
+
+.c-eye {
+  font-family: 'Caveat', cursive;
+  font-size: 24px;
+  color: var(--butter);
+  margin-bottom: 20px;
+  transform: rotate(-2deg);
+  display: inline-block;
+}
+.c-head {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(38px, 6vw, 84px);
+  font-weight: 700;
+  color: var(--cream);
+  line-height: 1.08;
+  margin-bottom: 52px;
+  max-width: 900px;
+  margin-left: auto; margin-right: auto;
+  letter-spacing: -.025em;
+}
+.c-head em {
+  font-style: italic;
+  color: var(--peach);
+  font-weight: 500;
+}
+.c-head .circled {
+  position: relative; display: inline-block;
+  padding: 0 8px;
+}
+.c-head .circled::before {
+  content: '';
+  position: absolute; inset: -6px -4px -4px -4px;
+  border: 2px solid var(--rose);
+  border-radius: 50%;
+  transform: rotate(-2deg);
+}
+
+.c-links {
+  display: flex; justify-content: center;
+  gap: 16px; flex-wrap: wrap; margin-bottom: 52px;
+}
+.c-link {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 16px 30px;
+  border-radius: 100px;
+  font-size: 14.5px; font-weight: 600;
+  text-decoration: none;
+  transition: transform .25s, box-shadow .25s;
+  border: 1.5px solid var(--cream);
+}
+.c-link.pri {
+  background: var(--butter); color: var(--espresso);
+  border-color: var(--butter);
+  box-shadow: 4px 4px 0 var(--rose-deep);
+}
+.c-link.pri:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--rose-deep);
+}
+.c-link.sec {
+  background: transparent; color: var(--cream);
+}
+.c-link.sec:hover {
+  background: var(--cream); color: var(--espresso);
+  transform: translateY(-3px);
+}
+
+.c-foot {
+  font-family: 'Caveat', cursive;
+  font-size: 18px; color: var(--cream); opacity: .5;
+}
+
+/* Signature */
+.signature {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: clamp(52px, 8vw, 100px);
+  color: var(--peach);
+  margin-top: 64px;
+  margin-bottom: 24px;
+  transform: rotate(-4deg);
+  display: inline-block;
+  font-weight: 400;
+}
+
+/* ── FADE-IN / REVEAL ── */
+.fi {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity .75s ease, transform .75s ease;
+}
+.fi.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+.fi-rot { transform: translateY(40px) rotate(-5deg); }
+.fi-rot.in { transform: translateY(0) rotate(var(--rot, 0deg)); }
+
+.fi:nth-child(2) { transition-delay: .08s; }
+.fi:nth-child(3) { transition-delay: .16s; }
+.fi:nth-child(4) { transition-delay: .24s; }
+.fi:nth-child(5) { transition-delay: .32s; }
+.fi:nth-child(6) { transition-delay: .4s; }
+.fi:nth-child(7) { transition-delay: .48s; }
+.fi:nth-child(8) { transition-delay: .56s; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .proc-grid { grid-template-columns: repeat(2, 1fr); }
+  .grow-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 900px) {
+  nav { padding: 16px 28px; }
+  .nav-links li:not(:last-child) { display: none; }
+  #about { grid-template-columns: 1fr; gap: 48px; padding-left: 36px; padding-right: 36px; }
+  #about::before { display: none; }
+  .about-vis { display: none; }
+  .proj-grid { grid-template-columns: 1fr; }
+  .spec-grid { grid-template-columns: 1fr; }
+  .sticker { display: none; }
+}
+@media (max-width: 640px) {
+  .section { padding: 80px 28px; }
+  #hero { padding: 120px 28px 80px; }
+  .grow-grid { grid-template-columns: 1fr; }
+  .proc-grid { grid-template-columns: 1fr; }
+  #contact { padding: 90px 24px; }
+  .marquee-inner span { font-size: 17px; padding: 0 18px; }
+  .take-strip { padding: 32px 24px 48px; }
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur-ring"></div>
+<div id="prog"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo">Nyashi</a>
+  <ul class="nav-links">
+    <li><a href="#numbers">The Work</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#instagram">Instagram</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#special">Specials</a></li>
+    <li><a href="#contact" class="nav-cta">Say Hi ✦</a></li>
+  </ul>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section id="hero">
+  <span class="sticker s1">✦ brand gal</span>
+  <span class="sticker s2">storyteller</span>
+  <span class="sticker s3">noida, india</span>
+  <span class="sticker s4">✿</span>
+  <span class="sticker s5">✦</span>
+  <span class="sticker s6">♡</span>
+
+  <!-- ═══════════════ ✏️ EDIT: YOUR PERSONAL PHOTO ═══════════════
+       Drop your photo file in the same folder as this HTML file,
+       then replace the <span>🌷</span> line below with:
+       <img src="your-photo.jpg" alt="Nyashi Srivastava">
+       ══════════════════════════════════════════════════════════ -->
+  <div class="hero-polaroid">
+    <div class="photo-inner">
+      <span>🌷</span>
+    </div>
+    <div class="caption">hi, i'm nyashi ♡</div>
+  </div>
+
+  <p class="hero-eyebrow">Brand Marketer &nbsp;·&nbsp; Employer Branding</p>
+
+  <h1 class="hero-name">
+    Nyashi<br>
+    <span class="italic">Srivastava</span>
+  </h1>
+
+  <p class="hero-sub">
+    I don't just build campaigns.<br>
+    I build the reason people want to <em>join, stay, and advocate</em> for a company.
+  </p>
+
+  <div class="cta-group">
+    <a href="#numbers" class="cta-btn">See the work ↓</a>
+    <a href="#contact" class="cta-btn secondary">Say hi ✉</a>
+  </div>
+</section>
+
+<!-- ─── MARQUEE ─── -->
+<div class="marquee-band" aria-hidden="true">
+  <div class="marquee-inner" id="marqueeTrack">
+    <span>Brand Strategy</span><span class="dot">✿</span>
+    <span>Employer Branding</span><span class="dot">✦</span>
+    <span>Community Building</span><span class="dot">✿</span>
+    <span>Event Management</span><span class="dot">✦</span>
+    <span>Content Strategy</span><span class="dot">✿</span>
+    <span>Reputation</span><span class="dot">✦</span>
+    <span>Brand Visibility</span><span class="dot">✿</span>
+    <span>Social Media</span><span class="dot">✦</span>
+    <span>CSR Programs</span><span class="dot">✿</span>
+    <span>Vendor Management</span><span class="dot">✦</span>
+    <span>Brand Strategy</span><span class="dot">✿</span>
+    <span>Employer Branding</span><span class="dot">✦</span>
+    <span>Community Building</span><span class="dot">✿</span>
+    <span>Event Management</span><span class="dot">✦</span>
+    <span>Content Strategy</span><span class="dot">✿</span>
+    <span>Reputation</span><span class="dot">✦</span>
+    <span>Brand Visibility</span><span class="dot">✿</span>
+    <span>Social Media</span><span class="dot">✦</span>
+    <span>CSR Programs</span><span class="dot">✿</span>
+    <span>Vendor Management</span><span class="dot">✦</span>
+  </div>
+</div>
+
+<!-- ─── NUMBERS ─── -->
+<section id="numbers" class="section">
+  <p class="s-label">the work, in numbers</p>
+  <h2 class="s-title">Results that speak<br>before <span class="italic">I</span> <span class="underline">do.</span></h2>
+
+  <div class="stats-grid">
+    <div class="stat-c fi">
+      <div class="s-num"><span class="counter" data-to="500">0</span>+</div>
+      <div class="s-desc">Meetup attendees across 8 events, up to 15 hires</div>
+    </div>
+    <div class="stat-c fi">
+      <div class="s-num"><span class="counter" data-to="63">0</span>%</div>
+      <div class="s-desc">Follower growth via 10+ social campaigns</div>
+    </div>
+    <div class="stat-c fi">
+      <div class="s-num"><span class="counter" data-to="27400">0</span>+</div>
+      <div class="s-desc">LinkedIn Life Tab dashboard views</div>
+    </div>
+    <div class="stat-c fi">
+      <div class="s-num"><span class="counter" data-to="9">0</span></div>
+      <div class="s-desc">CSR initiatives across two financial years</div>
+    </div>
+    <div class="stat-c fi">
+      <div class="s-num">100%</div>
+      <div class="s-desc">Brand compliance via logo integration checklist</div>
+    </div>
+    <div class="stat-c fi">
+      <div class="s-num">4.6<span style="font-size:26px;opacity:.7;">/5</span></div>
+      <div class="s-desc">Avg. event feedback score across all meetups</div>
+    </div>
+    <div class="stat-c fi">
+      <div class="s-num"><span class="counter" data-to="50">0</span>%</div>
+      <div class="s-desc">Uplift in brand advocacy through offline events</div>
+    </div>
+    <div class="stat-c fi">
+      <div class="s-num"><span class="counter" data-to="15">0</span>+</div>
+      <div class="s-desc">Internal campaigns delivered org-wide</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ABOUT ─── -->
+<section id="about" class="section">
+  <div class="about-text">
+    <p class="s-label">about me</p>
+    <p class="about-quote">I live at the intersection of marketing and people strategy.</p>
+    <p class="about-body">Brand marketer with <strong>2+ years at Innovaccer</strong>, a healthcare SaaS company, where I built employer brand from near-zero. Grew social presence, created events that didn't exist, ran CSR programs across 9 NGOs, and won an AI hackathon by turning brand listening into a product.</p>
+    <p class="about-body">I believe the best brands are felt before they're seen. My work sits at the intersection of <strong>creative instinct and operational rigour</strong>.</p>
+
+    <div class="beliefs">
+      <div class="belief fi">
+        <span class="b-icon">🎯</span>
+        Brand is built in the details: the tone of a job post, the warmth of an internal newsletter, the energy in a room.
+      </div>
+      <div class="belief fi">
+        <span class="b-icon">📊</span>
+        Every creative call should be backed by data. Gut + metrics = campaigns that actually move people.
+      </div>
+      <div class="belief fi">
+        <span class="b-icon">🌱</span>
+        The brands worth working for treat their people like humans first, headcount second.
+      </div>
+    </div>
+  </div>
+
+  <div class="about-vis">
+    <div class="about-polaroid p1">
+      <div class="ap-img"><span>📸</span></div>
+      <div class="ap-cap">at work, 2026 ♡</div>
+    </div>
+    <div class="about-polaroid p2">
+      <div class="ap-img"><span>🏆</span></div>
+      <div class="ap-cap">hackathon win</div>
+    </div>
+    <div class="about-badge">2 yrs<br>Innovaccer<br>★ Brand ★</div>
+  </div>
+</section>
+
+<!-- ─── PROJECTS ─── -->
+<section id="projects" class="section">
+  <div class="proj-header">
+    <div>
+      <p class="s-label">selected work</p>
+      <h2 class="s-title" style="margin-bottom:0;">Projects that<br><span class="italic">moved</span> the <span class="underline">needle.</span></h2>
+    </div>
+    <p class="proj-hint">tap any card for the full story</p>
+  </div>
+
+  <div class="proj-grid" style="margin-top:52px;">
+
+    <div class="p-card fi" onclick="openD('social')">
+      <div class="p-img">🌸</div>
+      <p class="p-tag">brand visibility</p>
+      <h3 class="p-title">Social Brand Campaigns</h3>
+      <p class="p-desc">10+ A/B tested campaigns across LinkedIn and Instagram. Weekly posts spanning POV wins, Day in the Life, advent calendars, awards, employee stories.</p>
+      <span class="p-metric">63%↑</span>
+      <div class="p-arrow">↗</div>
+    </div>
+
+    <div class="p-card fi" onclick="openD('events')">
+      <div class="p-img">🎪</div>
+      <p class="p-tag">community & events</p>
+      <h3 class="p-title">Offline Events Program</h3>
+      <p class="p-desc">Built the entire program from zero. Design, Product, Marketing, Tech, Data & AI meetups. End-to-end ownership: backend, vendors, website launch, on-ground.</p>
+      <span class="p-metric">500+</span>
+      <div class="p-arrow">↗</div>
+    </div>
+
+    <div class="p-card fi" onclick="openD('reputation')">
+      <div class="p-img">⭐</div>
+      <p class="p-tag">reputation</p>
+      <h3 class="p-title">Employer Reputation</h3>
+      <p class="p-desc">GPTW registration, case study, negotiations. Glassdoor sentiment analysis, trend-based responses, advocacy strategy, themed awareness campaigns.</p>
+      <span class="p-metric">100%</span>
+      <div class="p-arrow">↗</div>
+    </div>
+
+    <div class="p-card fi" onclick="openD('lifetab')">
+      <div class="p-img">💼</div>
+      <p class="p-tag">digital brand</p>
+      <h3 class="p-title">LinkedIn Life Tab</h3>
+      <p class="p-desc">Redesigned the wireframe via competitor benchmarking, content strategy and cross-channel alignment. Three dedicated subtabs. A talent magnet that converts.</p>
+      <span class="p-metric">27.4K</span>
+      <div class="p-arrow">↗</div>
+    </div>
+
+    <div class="p-card fi" onclick="openD('comms')">
+      <div class="p-img">💌</div>
+      <p class="p-tag">internal comms</p>
+      <h3 class="p-title">Comms & Content Pipeline</h3>
+      <p class="p-desc">5 quarterly newsletters, R&R mailers, Town Halls, welcome posts, year-end recaps, policy wireframes, event playbooks, employer branding SOPs.</p>
+      <span class="p-metric">5 ✦</span>
+      <div class="p-arrow">↗</div>
+    </div>
+
+    <div class="p-card fi" onclick="openD('alumni')">
+      <div class="p-img">🤝</div>
+      <p class="p-tag">alumni & talent</p>
+      <h3 class="p-title">Alumni Community</h3>
+      <p class="p-desc">Built the community plan, LinkedIn engagement posts, scouted alumni, handled data, extended invites and ran ongoing engagement. Rehire costs cut sharply.</p>
+      <span class="p-metric">40%↓</span>
+      <div class="p-arrow">↗</div>
+    </div>
+
+    <div class="p-card fi" onclick="openD('marathon')">
+      <div class="p-img">🏃‍♀️</div>
+      <p class="p-tag">wellness + branding</p>
+      <h3 class="p-title">Vedanta Delhi Half Marathon</h3>
+      <p class="p-desc">Without sponsorship budget, turned employee self-participation into a brand visibility moment via branded tees. Owned comms, design, procurement.</p>
+      <span class="p-metric">29 ✦</span>
+      <div class="p-arrow">↗</div>
+    </div>
+
+    <div class="p-card fi" onclick="openD('iitkgp')">
+      <div class="p-img">🎓</div>
+      <p class="p-tag">campus branding</p>
+      <h3 class="p-title">IIT KGP Spring Fest</h3>
+      <p class="p-desc">Managed the full sponsorship end-to-end, from relationship building to on-ground activations. Boosted campus visibility and opened a fresh recruitment pipeline.</p>
+      <span class="p-metric">✦</span>
+      <div class="p-arrow">↗</div>
+    </div>
+
+    <div class="p-card fi" onclick="openD('rebrand')">
+      <div class="p-img">🎨</div>
+      <p class="p-tag">brand rollout</p>
+      <h3 class="p-title">Brand Guidelines Adoption</h3>
+      <p class="p-desc">When the company rebranded, I drove 100% adoption across department-wide collaterals in under a month, with templates, checklists and active compliance reviews.</p>
+      <span class="p-metric">1 mo</span>
+      <div class="p-arrow">↗</div>
+    </div>
+
+    <div class="p-card fi" onclick="openD('jd')">
+      <div class="p-img">📝</div>
+      <p class="p-tag">hiring templates</p>
+      <h3 class="p-title">JD & TA Asset Library</h3>
+      <p class="p-desc">Authored JD writing guidelines and hiring templates adopted India + US. Plus 'About the Company' and Benefits Guide decks shown to candidates.</p>
+      <span class="p-metric">IN · US</span>
+      <div class="p-arrow">↗</div>
+    </div>
+
+    <div class="p-card fi" onclick="openD('vendor')">
+      <div class="p-img">📦</div>
+      <p class="p-tag">operations</p>
+      <h3 class="p-title">Vendor Management</h3>
+      <p class="p-desc">Initial discussions, sampling, approvals, purchase orders, invoices and quality checks for every creative and print deliverable. Zero slippage.</p>
+      <span class="p-metric">E2E</span>
+      <div class="p-arrow">↗</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     ✏️ EDIT ZONE: INSTAGRAM FEATURE
+     Replace the 6 placeholder tiles below with your own content.
+     Each tile supports:
+       <img src="proofs/ig-1.jpg" alt="..."> (local image)
+       <video src="proofs/ig-1.mp4" autoplay loop muted playsinline></video>
+       <iframe src="..."></iframe>  (embedded Instagram post via
+          https://www.instagram.com/p/POST_SHORTCODE/embed/)
+     ═══════════════════════════════════════════════════════════════════ -->
+<section id="instagram" class="section ig-section">
+  <div class="ig-head">
+    <p class="s-label">featured on instagram</p>
+    <h2 class="s-title">
+      <span class="italic">@lifeatinnovaccer</span><br>
+      the <span class="underline">feed</span> I built.
+    </h2>
+    <p class="ig-sub">
+      Weekly posts across Day in the Life, POV Your Win, Our Story, Employee Engagement,
+      Official Events, Christmas Advent Calendar, Expectations vs Reality, Awards,
+      What's Your Work Story, and more.
+    </p>
+    <a href="https://www.instagram.com/lifeatinnovaccer/?hl=en" target="_blank" rel="noopener" class="ig-cta">
+      ↗ &nbsp;view the full feed on Instagram
+    </a>
+  </div>
+
+  <div class="ig-grid">
+    <!-- ✏️ EDIT: Replace each .ig-tile's inner content with an <img>, <video> or <iframe> -->
+    <div class="ig-tile" data-label="Day in the Life">
+      <div class="ig-placeholder">
+        <span class="ig-emoji">☀️</span>
+        <span class="ig-caption">Day in the Life</span>
+        <span class="ig-hint">drop image / video / embed here</span>
+      </div>
+    </div>
+    <div class="ig-tile" data-label="POV Your Win">
+      <div class="ig-placeholder">
+        <span class="ig-emoji">🏆</span>
+        <span class="ig-caption">POV: Your Win</span>
+        <span class="ig-hint">drop image / video / embed here</span>
+      </div>
+    </div>
+    <div class="ig-tile" data-label="Advent Calendar">
+      <div class="ig-placeholder">
+        <span class="ig-emoji">🎄</span>
+        <span class="ig-caption">Christmas Advent</span>
+        <span class="ig-hint">drop image / video / embed here</span>
+      </div>
+    </div>
+    <div class="ig-tile" data-label="Our Story">
+      <div class="ig-placeholder">
+        <span class="ig-emoji">💬</span>
+        <span class="ig-caption">Our Story</span>
+        <span class="ig-hint">drop image / video / embed here</span>
+      </div>
+    </div>
+    <div class="ig-tile" data-label="Events">
+      <div class="ig-placeholder">
+        <span class="ig-emoji">🎉</span>
+        <span class="ig-caption">Official Events</span>
+        <span class="ig-hint">drop image / video / embed here</span>
+      </div>
+    </div>
+    <div class="ig-tile" data-label="Expectations vs Reality">
+      <div class="ig-placeholder">
+        <span class="ig-emoji">🎭</span>
+        <span class="ig-caption">Expectations vs Reality</span>
+        <span class="ig-hint">drop image / video / embed here</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TAKE WHAT YOU NEED STRIP -->
+<div class="take-strip fi">
+  <h3>take what you need</h3>
+  <p>~ specialities i bring to the table ~</p>
+  <div class="tabs-row">
+    <div class="tab-strip">brand strategy</div>
+    <div class="tab-strip">storytelling</div>
+    <div class="tab-strip">community</div>
+    <div class="tab-strip">campaigns</div>
+    <div class="tab-strip">events</div>
+    <div class="tab-strip">content</div>
+    <div class="tab-strip">csr</div>
+    <div class="tab-strip">ops</div>
+  </div>
+</div>
+
+<!-- ─── PROCESS ─── -->
+<section id="process" class="section">
+  <p class="s-label">how i work</p>
+  <h2 class="s-title">Method behind<br>the <span class="italic">magic.</span></h2>
+
+  <div class="proc-grid">
+    <div class="proc-c fi">
+      <div class="proc-n">01</div>
+      <h3 class="proc-t">Research & Listen</h3>
+      <p class="proc-b">Understand the audience: what they care about, where they live online, what makes them stop scrolling. Data, feedback, competitor maps.</p>
+    </div>
+    <div class="proc-c fi">
+      <div class="proc-n">02</div>
+      <h3 class="proc-t">Strategize</h3>
+      <p class="proc-b">Build the plan. Messaging architecture, channel mix, content calendar, and a clear hypothesis for what success looks like.</p>
+    </div>
+    <div class="proc-c fi">
+      <div class="proc-n">03</div>
+      <h3 class="proc-t">Build & Execute</h3>
+      <p class="proc-b">From design to delivery. Own the whole pipeline: vendor coordination, cross-team alignment, on-ground execution, quality sign-offs.</p>
+    </div>
+    <div class="proc-c fi">
+      <div class="proc-n">04</div>
+      <h3 class="proc-t">Measure & Iterate</h3>
+      <p class="proc-b">Every campaign analyzed. Impressions, feedback scores, pipeline impact. Document what worked, sharpen the next one.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SPECIAL PROJECTS ─── -->
+<section id="special" class="section">
+  <p class="s-label">special projects</p>
+  <h2 class="s-title">Beyond the <span class="italic">brief.</span></h2>
+
+  <div class="spec-grid">
+    <div class="spec-c fi">
+      <div class="spec-icon">🤖</div>
+      <h3 class="spec-t">AI Hackathon,1st Place</h3>
+      <p class="spec-d">4 days · Px Hackathon · Cross-functional team</p>
+      <p class="spec-body">Identified an unaddressed need for employer brand sentiment tracking and built an AI-powered social listening platform: real-time sentiment analysis, predictive insights, working dashboard prototype in 4 days. Won 1st place for innovation and practicality. Now leading its commercialization into a market-ready product.</p>
+      <span class="spec-badge">🏆 1st Place</span>
+    </div>
+
+    <div class="spec-c fi">
+      <div class="spec-icon">🌿</div>
+      <h3 class="spec-t">CSR Program</h3>
+      <p class="spec-d">2024 – 2026 · 9 NGO partnerships · 2 financial years</p>
+      <p class="spec-body">Managed Innovaccer's CSR program for 2 consecutive years across 9 NGO partnerships. Every initiative was owned end-to-end: from NGO identification, relationship building and internal approvals through to fund disbursement, compliance documentation and branding activations.</p>
+      <span class="spec-badge">✦ 9 Initiatives</span>
+    </div>
+
+    <div class="spec-c fi">
+      <div class="spec-icon">💻</div>
+      <h3 class="spec-t">Careers Page</h3>
+      <p class="spec-d">2025 – 2026 · Product × Engineering × Brand</p>
+      <p class="spec-body">Took the careers page from concept to live. Competitor benchmarking to map the landscape, A/B testing to define direction, then content strategy, wireframing, and development with Product and Engineering. Now owns ongoing maintenance post-launch.</p>
+      <span class="spec-badge">✿ Concept → Live</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── GROWTH ─── -->
+<section id="growth" class="section">
+  <p class="s-label">growth mindset</p>
+  <h2 class="s-title">What every project<br>taught <span class="italic">me.</span></h2>
+
+  <div class="grow-grid">
+    <div class="grow-c fi">
+      <span class="grow-emoji">📈</span>
+      <h4 class="grow-t">Data-Driven Decisions</h4>
+      <p class="grow-b">Analyzing campaign metrics, feedback scores, and audience insights to sharpen outreach and engagement strategy.</p>
+    </div>
+    <div class="grow-c fi">
+      <span class="grow-emoji">🤝</span>
+      <h4 class="grow-t">Cross-Functional Collaboration</h4>
+      <p class="grow-b">Working with Product, Engineering, Design, TA, CSR, and leadership, aligning diverse expectations into unified projects.</p>
+    </div>
+    <div class="grow-c fi">
+      <span class="grow-emoji">🧵</span>
+      <h4 class="grow-t">End-to-End Ownership</h4>
+      <p class="grow-b">Managing projects from strategy and content through execution, promotions, and post-event analysis without dropping a thread.</p>
+    </div>
+    <div class="grow-c fi">
+      <span class="grow-emoji">🧠</span>
+      <h4 class="grow-t">Audience Psychology</h4>
+      <p class="grow-b">Understanding what hooks work across LinkedIn, Instagram, and internal channels for candidates, employees, alumni alike.</p>
+    </div>
+    <div class="grow-c fi">
+      <span class="grow-emoji">📖</span>
+      <h4 class="grow-t">Brand Storytelling</h4>
+      <p class="grow-b">Maintaining brand voice and visual consistency while localizing messaging for meetups, internal promos, and advocacy.</p>
+    </div>
+    <div class="grow-c fi">
+      <span class="grow-emoji">🧯</span>
+      <h4 class="grow-t">Crisis & Problem Solving</h4>
+      <p class="grow-b">Managing vendor delays, attendee drop-offs, and last-minute changes under tight deadlines without compromising quality.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CONTACT ─── -->
+<section id="contact">
+  <p class="c-eye">let's make something ~</p>
+  <h2 class="c-head">
+    If you're building a brand<br>
+    worth <em>joining</em>,<br>
+    I'd love to <span class="circled">be part</span> of it.
+  </h2>
+
+  <div class="c-links">
+    <a href="mailto:nyashisrivastava@gmail.com" class="c-link pri">✉ nyashisrivastava@gmail.com</a>
+    <a href="https://www.linkedin.com/in/nyashi-srivastava/" target="_blank" class="c-link sec">↗ LinkedIn</a>
+    <a href="tel:+917011164578" class="c-link sec">☎ +91 7011164578</a>
+  </div>
+
+  <div class="signature">~ Nyashi ♡</div>
+  <p class="c-foot">Noida, India ✦ Open to brand marketing & employer branding roles</p>
+</section>
+
+<!-- OVERLAY + DRAWER -->
+<div class="overlay" id="overlay" onclick="closeD()"></div>
+<div class="drawer" id="drawer">
+  <button class="d-close" onclick="closeD()">✕</button>
+  <div id="dContent"></div>
+</div>
+
+<script>
+// ── Custom Cursor ──
+const cur = document.getElementById('cur');
+const ring = document.getElementById('cur-ring');
+let mx = innerWidth / 2, my = innerHeight / 2;
+let rx = mx, ry = my;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cur.style.transform = `translate(${mx - 6}px, ${my - 6}px)`;
+});
+(function animRing() {
+  rx += (mx - rx) * .15;
+  ry += (my - ry) * .15;
+  ring.style.transform = `translate(${rx - 22}px, ${ry - 22}px)`;
+  requestAnimationFrame(animRing);
+})();
+
+// Add hover detection for interactive elements
+document.querySelectorAll('a, button, .p-card, .stat-c, .spec-c, .grow-c, .proc-c, .belief, .tab-strip, .about-polaroid, .hero-polaroid, .ig-tile, .d-link-pill')
+  .forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+  });
+
+// ── Scroll Progress + Nav ──
+const nav = document.getElementById('nav');
+const prog = document.getElementById('prog');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', scrollY > 60);
+  prog.style.width = (scrollY / (document.body.scrollHeight - innerHeight) * 100) + '%';
+}, { passive: true });
+
+// ── Fade-in on scroll ──
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) {
+    e.target.classList.add('in');
+    io.unobserve(e.target);
+  }
+}), { threshold: 0.1 });
+document.querySelectorAll('.fi').forEach(el => io.observe(el));
+
+// ── Number Counters ──
+const cio = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return;
+  const el = e.target, to = +el.dataset.to, dur = 1800;
+  const step = to / (dur / 16);
+  let v = 0;
+  const run = () => {
+    v = Math.min(v + step, to);
+    el.textContent = to >= 1000 ? Math.floor(v).toLocaleString() : Math.floor(v);
+    if (v < to) requestAnimationFrame(run);
+  };
+  run();
+  cio.unobserve(el);
+}), { threshold: 0.5 });
+document.querySelectorAll('.counter').forEach(c => cio.observe(c));
+
+// ── Parallax stickers on mouse move ──
+document.addEventListener('mousemove', e => {
+  const x = (e.clientX / innerWidth - 0.5) * 2;
+  const y = (e.clientY / innerHeight - 0.5) * 2;
+  document.querySelectorAll('.sticker').forEach((s, i) => {
+    const depth = (i % 3 + 1) * 6;
+    s.style.translate = `${x * depth}px ${y * depth}px`;
+  });
+});
+
+/* ═══════════════════════════════════════════════════════════════════
+   ✏️ EDIT ZONE: PROJECT DATA
+   Each project in the P object below renders inside the side drawer
+   when a project card is clicked. You can freely edit:
+     - tag, title, challenge, approach  (text fields)
+     - work: [] array of "how I did it" bullet points
+     - links: [] array of external links (Instagram, docs, etc.)
+     - metrics: [] array of big-number result tiles
+     - media: HTML string for images / videos / embeds. Examples:
+         <img src="proofs/campaign-1.jpg" alt="caption">
+         <video src="proofs/event-reel.mp4" controls></video>
+         <iframe src="https://www.youtube.com/embed/XXX" allowfullscreen></iframe>
+         <blockquote class="instagram-media" data-instgrm-permalink="URL"></blockquote>
+   Place any image / video files in the same folder as this HTML file.
+   ═══════════════════════════════════════════════════════════════════ */
+const P = {
+
+  social: {
+    tag: 'brand visibility',
+    title: 'Social Brand Campaigns',
+    challenge: 'Organic reach was declining and the brand had inconsistent presence across platforms. The goal was to grow followers, drive meaningful engagement, and build brand recognition without a large paid budget.',
+    approach: 'Built a multi-format content strategy using A/B testing across LinkedIn and Instagram. Ran 10+ campaigns with weekly posts designed around recurring story formats that employees and candidates genuinely looked forward to.',
+    work: [
+      'Weekly content across recurring series: Day in the Life, POV Your Win, Our Story, Employee Engagement Activities, Official Events, Christmas Advent Calendar, Expectations vs. Reality, Awards, and What\'s Your Work Story.',
+      'Ran 10+ A/B tested campaigns to learn what hooks, thumbnails and CTAs actually moved the needle.',
+      'Designed the full content calendar, briefed vendors, and managed end-to-end execution from ideation to publishing.',
+      'Tracked follower movement, impressions per post and engagement to iterate on format fatigue.'
+    ],
+    links: [
+      { label: '@lifeatinnovaccer on Instagram', url: 'https://www.instagram.com/lifeatinnovaccer/?hl=en' }
+    ],
+    metrics: [
+      {n:'63%', l:'Follower growth'},
+      {n:'2K+', l:'Peak impressions/post'},
+      {n:'10+', l:'A/B tested campaigns'},
+      {n:'9', l:'Recurring content formats'}
+    ],
+    /* ✏️ EDIT: paste Instagram post embeds / images / videos below */
+    media: `
+      <!-- Example Instagram post embed (replace permalink with real post URL):
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/POST_SHORTCODE/" data-instgrm-version="14"></blockquote>
+      <script async src="//www.instagram.com/embed.js"><\/script>
+      -->
+      <!-- Example image: <img src="proofs/social-1.jpg" alt="campaign 1"> -->
+      <!-- Example video: <video src="proofs/social-reel.mp4" controls></video> -->
+    `
+  },
+
+  events: {
+    tag: 'community & events',
+    title: 'Offline Events Program',
+    challenge: 'No structured offline events program existed. Innovaccer needed to build technical communities, showcase its brand to future candidates, and drive hiring through meaningful, in-person experiences.',
+    approach: 'Built the entire program from scratch and owned every part of it end-to-end. Ran 8+ events across Design, Product, Marketing, Tech and Data & AI disciplines.',
+    work: [
+      'Owned the full backend: venue sourcing, agenda design, speaker outreach and logistics.',
+      'Vendor management for swags, signage, stage design, AV and catering.',
+      'Event launch on the company website and registration microsites.',
+      'Attendee registration flow, confirmations, reminders and post-registration engagement nurture.',
+      'End-to-end data handling: RSVPs, attendance, feedback, NPS and follow-ups.',
+      'On-ground execution on event day: briefing volunteers, running the room, speaker care, crisis handling.',
+      'Curated session agendas, panel structure and speaker line-ups so content actually landed.'
+    ],
+    links: [],
+    metrics: [
+      {n:'500+', l:'Total external attendees'},
+      {n:'4.6/5', l:'Avg. feedback score'},
+      {n:'15', l:'Hires from events'},
+      {n:'50%', l:'Brand advocacy uplift'}
+    ],
+    media: `
+      <!-- ✏️ EDIT: event photos here -->
+      <!-- <img src="proofs/event-1.jpg" alt="Design Meetup"> -->
+      <!-- <img src="proofs/event-2.jpg" alt="Tech Meetup"> -->
+    `
+  },
+
+  reputation: {
+    tag: 'reputation',
+    title: 'Employer Reputation: GPTW & Glassdoor',
+    challenge: 'Employer sentiment on public platforms needed active management. GPTW certification required deep coordination, Glassdoor needed a coherent listening-and-response strategy, and awareness around social causes was missing entirely.',
+    approach: 'Ran GPTW across 2 full cycles and built a Glassdoor advocacy playbook. Layered in themed awareness campaigns for Mental Health Month, Pride Month and Women\'s Month.',
+    work: [
+      'Led GPTW registration and submissions across 2 certification cycles.',
+      'Built the company case study for GPTW entries: narrative, proof points, data.',
+      'Drove company and employee participation in the survey and award processes.',
+      'Handled negotiation from the organization standpoint across GPTW touchpoints.',
+      'Actively monitored Glassdoor reviews, ran trend-based sentiment analysis and crafted targeted responses.',
+      'Executed advocacy strategies to lift ratings and rebalance narrative.',
+      'Ran themed awareness campaigns with mailers, wireframes and multi-channel rollouts.'
+    ],
+    links: [],
+    metrics: [
+      {n:'2×', l:'GPTW cycles led'},
+      {n:'6+', l:'Strategic reports built'},
+      {n:'15+', l:'Awareness campaigns'},
+      {n:'↑', l:'Glassdoor sentiment'}
+    ],
+    media: `
+      <!-- ✏️ EDIT: GPTW badge, Glassdoor screenshots, awareness creatives here -->
+      <!-- <img src="proofs/gptw-badge.jpg" alt="GPTW certification"> -->
+      <!-- <img src="proofs/glassdoor.jpg" alt="Glassdoor ratings"> -->
+    `
+  },
+
+  lifetab: {
+    tag: 'digital brand',
+    title: 'LinkedIn Life Tab Redesign',
+    challenge: 'The LinkedIn Life Tab was underutilized with generic content and no clear strategy. Candidates visiting the page weren\'t getting a compelling reason to apply or explore the company.',
+    approach: 'Redesigned the wireframe through rigorous competitor benchmarking, then rolled out three dedicated subtabs and a full content strategy aligned with every other channel.',
+    work: [
+      'Competitor benchmarking: analysed what other companies are doing, how their Life pages are structured and what actually stands out.',
+      'Mapped improvements and new modules needed on our page.',
+      'Built a content strategy tied to the new structure: themes, cadence and tone.',
+      'Aligned Life Tab content with every other content piece across social, careers and internal channels.',
+      'Three dedicated subtabs spotlighting culture, growth and people stories.',
+      'Curated themes for each subtab, managed production and tracked LinkedIn analytics.'
+    ],
+    links: [],
+    metrics: [
+      {n:'27,400+', l:'Dashboard views'},
+      {n:'3', l:'Dedicated subtabs'},
+      {n:'↑', l:'Application CTR'},
+      {n:'✦', l:'Top discovery channel'}
+    ],
+    media: `
+      <!-- ✏️ EDIT: Life Tab wireframes, before/after screenshots -->
+      <!-- <img src="proofs/life-tab-before.jpg" alt="Before"> -->
+      <!-- <img src="proofs/life-tab-after.jpg" alt="After"> -->
+    `
+  },
+
+  comms: {
+    tag: 'internal communications',
+    title: 'Comms & Content Pipeline',
+    challenge: 'No consistent internal communications channel existed. Employees lacked a reliable, well-designed source for company updates, recognitions and culture moments.',
+    approach: 'Built and owned the full communications pipeline from scratch. Every asset, from quarterly newsletters to one-off announcement mailers, moved through a single, branded pipeline.',
+    work: [
+      'Quarterly PX Newsletter (5 editions to date): collected data, built the content strategy, wireframed, designed and developed each edition.',
+      'Awareness and promotional campaigns for new system enrolments, policy developments, announcements and chatbot promotions.',
+      'Multiple wireframes for mailers, templates, newsletters, docs and policy templates.',
+      'Town Hall communications end-to-end.',
+      'Welcome posts for new joiners.',
+      'Year-end recaps and moment-in-time campaigns.',
+      'Event playbooks and employer branding SOPs for future repeatability.'
+    ],
+    links: [],
+    metrics: [
+      {n:'5', l:'PX newsletters live'},
+      {n:'50+', l:'LinkedIn job posts'},
+      {n:'100%', l:'Brand compliance'},
+      {n:'✦', l:'First consistent channel'}
+    ],
+    media: `
+      <!-- ✏️ EDIT: newsletter screenshots, mailer designs, template previews -->
+      <!-- <img src="proofs/newsletter-1.jpg" alt="PX newsletter ed.1"> -->
+    `
+  },
+
+  alumni: {
+    tag: 'alumni & talent',
+    title: 'Alumni Community',
+    challenge: 'High rehire friction and limited alumni engagement meant missed referral opportunities and expensive external recruitment for roles former employees could easily fill.',
+    approach: 'Designed and launched a flagship alumni community and a branded engagement suite around it.',
+    work: [
+      'Created the full community-building and engagement plan from zero.',
+      'Designed a LinkedIn post plan to consistently engage and re-engage alumni.',
+      'Scouted the right alumni profiles: data sourcing, filtering and prioritisation.',
+      'Owned alumni data handling end-to-end.',
+      'Reached out to alumni personally and extended invitations.',
+      'Ran ongoing engagement once they joined the community.'
+    ],
+    links: [],
+    metrics: [
+      {n:'40%', l:'Reduction in rehire costs'},
+      {n:'✦', l:'Referral network built'},
+      {n:'✦', l:'Warm talent pipeline'},
+      {n:'✦', l:'Branded engagement suite'}
+    ],
+    media: `
+      <!-- ✏️ EDIT: alumni community LinkedIn posts, program deck pages -->
+    `
+  },
+
+  marathon: {
+    tag: 'wellness & branding',
+    title: 'Vedanta Delhi Half Marathon',
+    challenge: 'We couldn\'t participate in the official sponsorship tier, which meant losing out on a high-visibility brand moment. The team still needed a way to show up.',
+    approach: 'Reframed the problem: if we can\'t be the sponsor, we can still be the brand on the ground. Turned self-participating employees into walking brand assets via custom branded tees.',
+    work: [
+      'Pitched the branded T-shirt approach as a creative sponsorship alternative.',
+      'Owned internal comms to rally and register employee participants.',
+      'Owned external comms to amplify the moment on social.',
+      'Designed the branded T-shirt end-to-end.',
+      'Procured and delivered tees on time with full quality check.',
+      'Ran participant coordination on event day.'
+    ],
+    links: [],
+    metrics: [
+      {n:'29', l:'Employee participants'},
+      {n:'✦', l:'Brand visibility moment'},
+      {n:'0', l:'Sponsorship spend'},
+      {n:'✦', l:'Wellness + brand combo'}
+    ],
+    media: `
+      <!-- ✏️ EDIT: marathon photos, branded t-shirt shots, social reel -->
+      <!-- <img src="proofs/marathon-1.jpg" alt="Team on race day"> -->
+    `
+  },
+
+  iitkgp: {
+    tag: 'campus branding',
+    title: 'IIT KGP Spring Fest',
+    challenge: 'Needed to break into a top-tier campus for visibility and build a fresh recruitment pipeline in a cost-efficient way.',
+    approach: 'Owned the sponsorship end-to-end, treating the fest as a brand activation rather than a transactional logo placement.',
+    work: [
+      'Led relationship building with the Spring Fest organising committee.',
+      'Negotiated the sponsorship scope and deliverables.',
+      'Coordinated creative assets, brand placements and activation zones.',
+      'Built a recruitment pipeline hook that fed directly into TA.'
+    ],
+    links: [],
+    metrics: [
+      {n:'✦', l:'Campus visibility boost'},
+      {n:'✦', l:'Recruitment pipeline'},
+      {n:'1', l:'Flagship campus activation'},
+      {n:'E2E', l:'Ownership'}
+    ],
+    media: `
+      <!-- ✏️ EDIT: activation photos, branded booth, sponsorship deck pages -->
+    `
+  },
+
+  rebrand: {
+    tag: 'brand rollout',
+    title: 'Brand Guidelines Adoption',
+    challenge: 'The company recently refreshed its brand. Every department-wide collateral had to migrate, fast, without breaking visual consistency anywhere.',
+    approach: 'Rolled out the new brand through templates, checklists and live compliance reviews so teams could self-serve without second-guessing.',
+    work: [
+      'Took over the full adoption rollout across the department.',
+      'Built refreshed templates across mailers, decks, docs and social creatives.',
+      'Authored a compliance checklist so every asset could be validated quickly.',
+      'Ran active compliance reviews and rework loops with asset owners.',
+      'Hit 100% adoption within one month.'
+    ],
+    links: [],
+    metrics: [
+      {n:'100%', l:'Adoption'},
+      {n:'1 mo', l:'Rollout time'},
+      {n:'✦', l:'Templates + checklists'},
+      {n:'0', l:'Brand drift incidents'}
+    ],
+    media: `
+      <!-- ✏️ EDIT: brand guideline preview, template shots -->
+    `
+  },
+
+  jd: {
+    tag: 'hiring templates',
+    title: 'JD & TA Asset Library',
+    challenge: 'Employer messaging was inconsistent across hiring touchpoints. Candidates across India and US were receiving different tones and different versions of the company story.',
+    approach: 'Built a shared library and guideline set so JDs, about-the-company decks and benefits guides all sounded and looked the same everywhere.',
+    work: [
+      'Authored JD writing guidelines covering tone, structure, length and inclusivity.',
+      'Built reusable hiring templates adopted across India and US teams.',
+      'Standardised employer messaging across every hiring touchpoint.',
+      'Created TA assets: About the Company deck and Benefits Guide shown to candidates.'
+    ],
+    links: [],
+    metrics: [
+      {n:'IN · US', l:'Adopted across geos'},
+      {n:'✦', l:'JD guidelines'},
+      {n:'✦', l:'Hiring templates'},
+      {n:'✦', l:'TA candidate decks'}
+    ],
+    media: `
+      <!-- ✏️ EDIT: JD template shots, benefits guide pages -->
+    `
+  },
+
+  vendor: {
+    tag: 'operations',
+    title: 'Vendor Management',
+    challenge: 'Every creative and print deliverable had a vendor chain behind it. Without rigour at this layer, brand quality and timelines silently slip.',
+    approach: 'Owned vendor relationships end-to-end. Treated sampling, POs, invoices and QC as part of the creative process, not separate ops.',
+    work: [
+      'Led initial discussions and vendor shortlisting.',
+      'Managed sampling and sample approvals.',
+      'Issued and tracked every purchase order.',
+      'Managed invoicing and finance closure loops.',
+      'Ran quality checks on every creative and print deliverable before dispatch.'
+    ],
+    links: [],
+    metrics: [
+      {n:'E2E', l:'Ownership'},
+      {n:'0', l:'QC slippage'},
+      {n:'✦', l:'Multi-vendor stack'},
+      {n:'✦', l:'Creative + print'}
+    ],
+    media: `
+      <!-- ✏️ EDIT: vendor deliverable photos, swag shots -->
+    `
+  }
+
+};
+
+function openD(k) {
+  const p = P[k];
+  const workHTML = (p.work && p.work.length)
+    ? `<span class="d-slabel">what i actually did</span><ul class="d-list">${p.work.map(w => `<li>${w}</li>`).join('')}</ul>` : '';
+  const linksHTML = (p.links && p.links.length)
+    ? `<span class="d-slabel">featured on</span><div class="d-links">${p.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener" class="d-link-pill">↗ ${l.label}</a>`).join('')}</div>` : '';
+  const mediaHTML = (p.media && p.media.trim())
+    ? `<span class="d-slabel">work proofs</span><div class="d-media">${p.media}</div>` : '';
+  document.getElementById('dContent').innerHTML = `
+    <p class="d-tag">${p.tag}</p>
+    <h2 class="d-title">${p.title}</h2>
+    <span class="d-slabel">the challenge</span>
+    <p class="d-text">${p.challenge}</p>
+    <span class="d-slabel">the approach</span>
+    <p class="d-text">${p.approach}</p>
+    ${workHTML}
+    ${linksHTML}
+    ${mediaHTML}
+    <span class="d-slabel">results</span>
+    <div class="d-metrics">${p.metrics.map(m => `<div class="d-met"><span class="d-met-n">${m.n}</span><span class="d-met-l">${m.l}</span></div>`).join('')}</div>
+  `;
+  document.getElementById('overlay').classList.add('on');
+  document.getElementById('drawer').classList.add('on');
+  document.body.style.overflow = 'hidden';
+}
+function closeD() {
+  document.getElementById('overlay').classList.remove('on');
+  document.getElementById('drawer').classList.remove('on');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeD(); });
+
+// ── Tilt on hover for project cards ──
+document.querySelectorAll('.p-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;
+    const y = (e.clientY - r.top) / r.height - 0.5;
+    card.style.transform = `rotate(0deg) translateY(-12px) scale(1.03) rotateY(${x * 6}deg) rotateX(${-y * 6}deg)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+  });
+});
+</script>
+</body>
+</html>
