@@ -580,15 +580,20 @@ nav.scrolled {
 
 .proj-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(260px, 320px));
   gap: 36px 28px;
+  justify-content: center;
 }
 .p-card {
   background: var(--paper);
   border-radius: 4px;
   padding: 16px 16px 80px;
   min-height: 380px;
-  cursor: pointer; position: relative;
+  width: 100%;
+  max-width: 320px;
+  box-sizing: border-box;
+  cursor: pointer;
+  position: relative;
   box-shadow: 0 6px 22px rgba(58, 36, 26, 0.12);
   transition: transform .35s cubic-bezier(.4,0,.2,1), box-shadow .35s;
   overflow: visible;
@@ -1511,7 +1516,7 @@ nav.scrolled {
       <div class="p-img"><img src="Instagram.png" alt="Instagram"></div>
       <p class="p-tag">brand visibility</p>
       <h3 class="p-title">Social Brand Campaigns</h3>
-      <p class="p-desc">10+ A/B tested campaigns across LinkedIn and Instagram. Weekly posts spanning POV wins, Day in the Life, advent calendars, awards, employee stories.</p>
+      <p class="p-desc">10+ A/B tested campaigns across LinkedIn and Instagram. Weekly posts spanning POV wins, Day in the Life, advent calendars, awards, and employee stories.</p>
       <span class="p-metric">63%↑</span>
       <div class="p-arrow">↗</div>
     </div>
