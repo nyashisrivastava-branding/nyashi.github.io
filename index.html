@@ -35,7 +35,7 @@ body {
   background: var(--cream);
   color: var(--espresso);
   overflow-x: hidden;
-  cursor: none;
+  cursor: pointer;
   background-image:
     radial-gradient(rgba(58, 36, 26, 0.035) 1px, transparent 1px),
     radial-gradient(rgba(58, 36, 26, 0.022) 1px, transparent 1px);
@@ -506,6 +506,14 @@ nav.scrolled {
   font-size: 78px;
   overflow: hidden;
 }
+
+.about-polaroid .ap-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 .about-polaroid .ap-cap {
   position: absolute; bottom: 10px; left: 0; right: 0;
   font-family: 'Caveat', cursive; font-weight: 500;
@@ -735,7 +743,7 @@ nav.scrolled {
   position: absolute; top: 22px; right: 22px;
   background: var(--rose-deep); border: none;
   width: 40px; height: 40px; border-radius: 50%;
-  font-size: 18px; cursor: none;
+  font-size: 18px; cursor: pointer;
   color: var(--cream);
   transition: transform .2s, background .2s;
 }
@@ -1076,7 +1084,7 @@ nav.scrolled {
   box-shadow: 0 10px 26px rgba(58, 36, 26, 0.12);
   transition: transform .35s cubic-bezier(.4,0,.2,1), box-shadow .35s;
   position: relative;
-  cursor: none;
+  cursor: pointer;
 }
 .ig-tile:nth-child(1) { transform: rotate(-1.5deg); }
 .ig-tile:nth-child(2) { transform: rotate(1deg); }
@@ -1189,7 +1197,7 @@ nav.scrolled {
   font-size: 17px;
   color: var(--espresso);
   transition: transform .25s, background .25s;
-  cursor: none;
+  cursor: pointer;
 }
 .tab-strip:first-child { border-left: none; }
 .tab-strip:nth-child(2n) { background: var(--peach-2); }
@@ -1349,6 +1357,169 @@ nav.scrolled {
   .marquee-inner span { font-size: 17px; padding: 0 18px; }
   .take-strip { padding: 32px 24px 48px; }
 }
+
+
+/* ── IG TILE HOVER OVERLAY ── */
+.ig-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 16px;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(58,36,26,0) 40%, rgba(58,36,26,0.55) 100%);
+  opacity: 0;
+  transition: opacity .3s ease;
+  z-index: 3;
+  pointer-events: none;
+}
+.ig-tile:hover .ig-overlay { opacity: 1; }
+.ig-overlay-cap {
+  font-family: 'Fraunces', serif;
+  font-size: 18px; font-weight: 700;
+  color: var(--cream);
+  text-shadow: 0 2px 6px rgba(0,0,0,.4);
+}
+.ig-overlay-hint {
+  font-family: 'Caveat', cursive;
+  font-size: 16px;
+  color: var(--butter);
+}
+
+/* ── IG VIDEO LIGHTBOX ── */
+.ig-lightbox {
+  position: fixed; inset: 0;
+  z-index: 2000;
+  background: rgba(58, 36, 26, 0.78);
+  backdrop-filter: blur(10px);
+  display: none;
+  align-items: center; justify-content: center;
+  padding: 40px 20px;
+  cursor: pointer;
+}
+.ig-lightbox.on { display: flex; animation: igFadeIn .25s ease; }
+@keyframes igFadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.ig-lb-inner {
+  position: relative;
+  background: var(--paper);
+  padding: 14px 14px 56px;
+  border-radius: 4px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(58,36,26,0.08);
+  transform: rotate(-1deg);
+  animation: igPop .35s cubic-bezier(.34, 1.56, .64, 1);
+  max-width: min(520px, 92vw);
+}
+@keyframes igPop {
+  0%   { transform: rotate(-1deg) scale(.7); opacity: 0; }
+  100% { transform: rotate(-1deg) scale(1);  opacity: 1; }
+}
+.ig-lb-inner::before {
+  /* matching tape strip, like the tiles */
+  content: '';
+  position: absolute; top: -14px; left: 38%;
+  width: 110px; height: 26px;
+  background: var(--tape-pink);
+  transform: rotate(-3deg);
+  box-shadow: 0 2px 3px rgba(58,36,26,0.15);
+}
+#igLbVideo {
+  display: block;
+  width: 100%;
+  max-height: 70vh;
+  background: #000;
+  border-radius: 2px;
+}
+.ig-lb-cap {
+  position: absolute;
+  bottom: 16px; left: 0; right: 0;
+  text-align: center;
+  font-family: 'Caveat', cursive;
+  font-size: 22px;
+  color: var(--rose-deep);
+}
+.ig-lb-close {
+  position: absolute;
+  top: 24px; right: 24px;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--rose-deep);
+  color: var(--cream);
+  border: 1.5px solid var(--espresso);
+  box-shadow: 3px 3px 0 var(--espresso);
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 2001;
+  transition: transform .2s, box-shadow .2s;
+}
+.ig-lb-close:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--espresso);
+}
+@media (max-width: 600px) {
+  .ig-lb-inner { transform: rotate(0deg); padding: 10px 10px 44px; }
+  .ig-lb-close { top: 16px; right: 16px; }
+}
+
+/* ── IG carousel tile ── */
+.ig-carousel .ig-carousel-dots {
+  position: absolute;
+  bottom: 10px; left: 0; right: 0;
+  display: flex; justify-content: center; gap: 6px;
+  z-index: 4;
+  pointer-events: none;
+}
+.ig-carousel-dots span {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.5);
+  border: 1px solid rgba(58,36,26,0.4);
+  transition: background .25s, transform .25s;
+}
+.ig-carousel-dots span.on {
+  background: var(--butter);
+  transform: scale(1.3);
+}
+
+/* Lightbox version of the dots */
+.ig-lb-inner .ig-carousel-dots {
+  bottom: 28px;
+}
+.ig-lb-inner .ig-carousel-dots span {
+  width: 8px; height: 8px;
+}
+
+/* Photo carousel — fade transition between images */
+.ig-photo-carousel {
+  position: relative;
+}
+.ig-photo {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity .5s ease;
+}
+.ig-photo.fading {
+  opacity: 0;
+}
+
+/* Lightbox version of the photo */
+#igLbPhoto {
+  display: none;
+  max-width: 100%;
+  max-height: 70vh;
+  width: auto;
+  object-fit: contain;
+  transition: opacity .4s ease;
+  border-radius: 2px;
+}
+#igLbPhoto.fading { opacity: 0; }
+#igLbPhoto.active { display: block; }
+#igLbVideo.hidden { display: none; }
+
 </style>
 </head>
 <body>
@@ -1374,7 +1545,7 @@ nav.scrolled {
 <section id="hero">
   <span class="sticker s1">✦ brand gal</span>
   <span class="sticker s2">storyteller</span>
-  <span class="sticker s3">noida, india</span>
+  <span class="sticker s3">delhi, india</span>
   <span class="sticker s4">✿</span>
   <span class="sticker s5">✦</span>
   <span class="sticker s6">♡</span>
@@ -1659,8 +1830,8 @@ nav.scrolled {
     </a>
   </div>
 
-  <div class="ig-grid">
-    <!-- ✏️ EDIT: Replace each .ig-tile's inner content with an <img>, <video> or <iframe> -->
+  <!-- <div class="ig-grid">
+     
     <div class="ig-tile" data-label="Day in the Life">
       <div class="ig-placeholder">
         <span class="ig-emoji">☀️</span>
@@ -1668,6 +1839,7 @@ nav.scrolled {
         <span class="ig-hint">drop image / video / embed here</span>
       </div>
     </div>
+
     <div class="ig-tile" data-label="POV Your Win">
       <div class="ig-placeholder">
         <span class="ig-emoji">🏆</span>
@@ -1703,8 +1875,88 @@ nav.scrolled {
         <span class="ig-hint">drop image / video / embed here</span>
       </div>
     </div>
-  </div>
+  </div> -->
+
+
+  <div class="ig-grid">
+    <!-- ✏️ EDIT: change src paths to your actual video files (e.g. videos/day-in-life.mp4) -->
+    <div class="ig-tile" data-label="Day in the Life" data-emoji="☀️" data-caption="Day in the Life" onclick="openIgLightbox(this)">
+      <video class="ig-video" autoplay muted loop playsinline preload="metadata">
+        <source src="DayInTheLife.mp4" type="video/mp4">
+      </video>
+      <div class="ig-overlay"><span class="ig-overlay-cap">Day in the Life</span><span class="ig-overlay-hint">⛶ tap to expand</span></div>
+    </div>
+
+    <div class="ig-tile" data-label="POV Your Win" data-emoji="🏆" data-caption="POV: Your Win" onclick="openIgLightbox(this)">
+      <video class="ig-video" autoplay muted loop playsinline preload="metadata">
+        <source src="PovYourWin.mp4" type="video/mp4">
+      </video>
+      <div class="ig-overlay"><span class="ig-overlay-cap">POV: Your Win</span><span class="ig-overlay-hint">⛶ tap to expand</span></div>
+    </div>
+
+    <div class="ig-tile" data-label="Advent Calendar" data-emoji="🎄" data-caption="Christmas Advent" onclick="openIgLightbox(this)">
+      <video class="ig-video" autoplay muted loop playsinline preload="metadata">
+        <source src="Christmas_advent.mp4" type="video/mp4">
+      </video>
+      <div class="ig-overlay"><span class="ig-overlay-cap">Christmas Advent</span><span class="ig-overlay-hint">⛶ tap to expand</span></div>
+    </div>
+
+    <div class="ig-tile" data-label="Bring Your Kids to Work Day" data-emoji="💬" data-caption="Bring Your Kids to Work Day" onclick="openIgLightbox(this)">
+      <video class="ig-video" autoplay muted loop playsinline preload="metadata">
+        <source src="BYKTWD.mp4" type="video/mp4">
+      </video>
+      <div class="ig-overlay"><span class="ig-overlay-cap">Bring Your Kids to Work Day</span><span class="ig-overlay-hint">⛶ tap to expand</span></div>
+    </div>
+
+    <!-- <div class="ig-tile" data-label="Pet Retreat" data-emoji="🎉" data-caption="Pet Retreat" onclick="openIgLightbox(this)">
+      <video class="ig-video" autoplay muted loop playsinline preload="metadata">
+        <source src="videos/events.mp4" type="video/mp4">
+      </video>
+      <div class="ig-overlay"><span class="ig-overlay-cap">Pet Retreat</span><span class="ig-overlay-hint">⛶ tap to expand</span></div>
+    </div> -->
+
+    <div class="ig-tile ig-photo-carousel" data-label="Pet Retreat" data-caption="Pet Retreat"
+     data-sources='["dog.jpg","PetRetreat1.jpg","PetRetreat2.jpg","PetRetreat4.jpg","PetRetreat5.jpg"]'
+     data-interval="2500"
+     onclick="openIgLightbox(this)">
+      <img class="ig-photo" src="dog.jpg" alt="Pet Retreat">
+    <div class="ig-carousel-dots"></div>
+    <div class="ig-overlay">
+      <span class="ig-overlay-cap">Pet Retreat</span>
+      <span class="ig-overlay-hint">⛶ tap to expand</span>
+    </div>
+    </div>
+
+    <div class="ig-tile" data-label="Welcome" data-caption="Welcome" onclick="openIgLightbox(this)">
+      <img class="ig-photo" src="WelcomePost.jpg" alt="Welcome">
+      <div class="ig-overlay">
+        <span class="ig-overlay-cap">Welcome</span>
+        <span class="ig-overlay-hint">⛶ tap to expand</span>
+      </div>
+    </div>
+
+    
+
+</div>
 </section>
+
+<!-- IG VIDEO LIGHTBOX -->
+<!-- <div class="ig-lightbox" id="igLightbox" onclick="closeIgLightbox(event)">
+  <button class="ig-lb-close" onclick="closeIgLightbox()" aria-label="Close">✕</button>
+  <div class="ig-lb-inner" onclick="event.stopPropagation()">
+    <video id="igLbVideo" controls autoplay loop playsinline></video>
+    <p class="ig-lb-cap" id="igLbCap"></p>
+  </div>
+</div> -->
+
+<div class="ig-lightbox" id="igLightbox" onclick="closeIgLightbox(event)">
+      <button class="ig-lb-close" onclick="closeIgLightbox()" aria-label="Close">✕</button>
+    <div class="ig-lb-inner" onclick="event.stopPropagation()">
+      <video id="igLbVideo" controls autoplay loop playsinline></video>
+      <img id="igLbPhoto" alt="">
+      <p class="ig-lb-cap" id="igLbCap"></p>
+    </div>
+</div>
 
 <!-- TAKE WHAT YOU NEED STRIP -->
 <div class="take-strip fi">
@@ -1838,7 +2090,7 @@ nav.scrolled {
   </div>
 
   <div class="signature">~ Nyashi ♡</div>
-  <p class="c-foot">Noida, India ✦ Open to brand marketing & employer branding roles</p>
+  <p class="c-foot">Delhi, India ✦ Open to brand marketing & employer branding roles</p>
 </section>
 
 <!-- OVERLAY + DRAWER -->
@@ -2265,6 +2517,191 @@ document.querySelectorAll('.p-card').forEach(card => {
     card.style.transform = '';
   });
 });
+
+// ── IG video + photo lightbox & carousels ──
+const igCarousels = new Map();      // video carousel state
+const igPhotoCarousels = new Map(); // photo carousel state
+
+// ----- VIDEO carousel init (kept from before) -----
+function initIgVideoCarousels() {
+  document.querySelectorAll('.ig-carousel-video').forEach(vid => {
+    let sources;
+    try { sources = JSON.parse(vid.dataset.sources); } catch { return; }
+    if (!sources || !sources.length) return;
+    const tile = vid.closest('.ig-tile');
+    const dotsWrap = tile.querySelector('.ig-carousel-dots');
+    dotsWrap.innerHTML = sources.map((_, i) => `<span${i === 0 ? ' class="on"' : ''}></span>`).join('');
+    igCarousels.set(vid, { sources, idx: 0, dotsWrap });
+    vid.removeAttribute('loop');
+    vid.addEventListener('ended', () => advanceVideoCarousel(vid));
+  });
+}
+function advanceVideoCarousel(vid) {
+  const s = igCarousels.get(vid); if (!s) return;
+  s.idx = (s.idx + 1) % s.sources.length;
+  vid.src = s.sources[s.idx];
+  vid.play().catch(() => {});
+  [...s.dotsWrap.children].forEach((d, i) => d.classList.toggle('on', i === s.idx));
+}
+document.querySelectorAll('.ig-carousel-video').forEach((v, i) => v.dataset.cid = 'c' + i);
+initIgVideoCarousels();
+
+// ----- PHOTO carousel init -----
+function initIgPhotoCarousels() {
+  document.querySelectorAll('.ig-photo-carousel').forEach((tile, i) => {
+    let sources;
+    try { sources = JSON.parse(tile.dataset.sources); } catch { return; }
+    if (!sources || !sources.length) return;
+
+    const img = tile.querySelector('.ig-photo');
+    const dotsWrap = tile.querySelector('.ig-carousel-dots');
+    const interval = parseInt(tile.dataset.interval, 10) || 2500;
+    const cid = 'p' + i;
+    tile.dataset.cid = cid;
+
+    // Preload images for smooth transitions
+    sources.forEach(src => { const im = new Image(); im.src = src; });
+
+    dotsWrap.innerHTML = sources.map((_, j) =>
+      `<span${j === 0 ? ' class="on"' : ''}></span>`
+    ).join('');
+
+    const state = { sources, idx: 0, img, dotsWrap, interval, timer: null, tile };
+    igPhotoCarousels.set(cid, state);
+    startPhotoCarousel(cid);
+  });
+}
+function startPhotoCarousel(cid) {
+  const s = igPhotoCarousels.get(cid); if (!s) return;
+  clearInterval(s.timer);
+  s.timer = setInterval(() => advancePhotoCarousel(cid), s.interval);
+}
+function advancePhotoCarousel(cid) {
+  const s = igPhotoCarousels.get(cid); if (!s) return;
+  s.idx = (s.idx + 1) % s.sources.length;
+  // Fade out → swap → fade in
+  s.img.classList.add('fading');
+  setTimeout(() => {
+    s.img.src = s.sources[s.idx];
+    s.img.classList.remove('fading');
+  }, 250);
+  [...s.dotsWrap.children].forEach((d, i) => d.classList.toggle('on', i === s.idx));
+
+  // If lightbox is showing this carousel, sync it
+  const lbPhoto = document.getElementById('igLbPhoto');
+  if (lbPhoto.classList.contains('active') && lbPhoto.dataset.boundTo === cid) {
+    lbPhoto.classList.add('fading');
+    setTimeout(() => {
+      lbPhoto.src = s.sources[s.idx];
+      lbPhoto.classList.remove('fading');
+    }, 250);
+    const lbDots = document.querySelector('#igLightbox .ig-carousel-dots');
+    if (lbDots) [...lbDots.children].forEach((d, i) => d.classList.toggle('on', i === s.idx));
+  }
+}
+initIgPhotoCarousels();
+
+// ----- Lightbox open/close -----
+function openIgLightbox(tile) {
+  const lb      = document.getElementById('igLightbox');
+  const lbVid   = document.getElementById('igLbVideo');
+  const lbPhoto = document.getElementById('igLbPhoto');
+  const lbCap   = document.getElementById('igLbCap');
+  const lbInner = lb.querySelector('.ig-lb-inner');
+  const lbCap_  = document.getElementById('igLbCap');
+
+  // Clear previous dots
+  const oldDots = lbInner.querySelector('.ig-carousel-dots');
+  if (oldDots) oldDots.remove();
+
+  // Reset both media elements
+  lbVid.pause();
+  lbVid.removeAttribute('src');
+  lbVid.classList.add('hidden');
+  lbPhoto.classList.remove('active');
+  lbPhoto.removeAttribute('src');
+
+  lbCap.textContent = tile.dataset.label || '';
+
+  if (tile.classList.contains('ig-photo-carousel')) {
+    // PHOTO CAROUSEL
+    const cid = tile.dataset.cid;
+    const s = igPhotoCarousels.get(cid);
+    lbPhoto.src = s.sources[s.idx];
+    lbPhoto.dataset.boundTo = cid;
+    lbPhoto.classList.add('active');
+
+    // Mirror dots
+    const newDots = document.createElement('div');
+    newDots.className = 'ig-carousel-dots';
+    newDots.innerHTML = s.sources.map((_, i) =>
+      `<span${i === s.idx ? ' class="on"' : ''}></span>`
+    ).join('');
+    lbInner.appendChild(newDots);
+
+  } else {
+    // VIDEO (single or carousel)
+    const tileVid = tile.querySelector('.ig-video');
+    if (!tileVid) return;
+    const isVidCarousel = tileVid.classList.contains('ig-carousel-video');
+    lbVid.classList.remove('hidden');
+
+    if (isVidCarousel) {
+      const s = igCarousels.get(tileVid);
+      lbVid.removeAttribute('loop');
+      lbVid.src = s.sources[s.idx];
+      lbVid.currentTime = tileVid.currentTime || 0;
+
+      const newDots = document.createElement('div');
+      newDots.className = 'ig-carousel-dots';
+      newDots.innerHTML = s.sources.map((_, i) =>
+        `<span${i === s.idx ? ' class="on"' : ''}></span>`
+      ).join('');
+      lbInner.appendChild(newDots);
+
+      lbVid.onended = () => {
+        advanceVideoCarousel(tileVid);
+        const st = igCarousels.get(tileVid);
+        lbVid.src = st.sources[st.idx];
+        lbVid.play().catch(() => {});
+        [...newDots.children].forEach((d, i) => d.classList.toggle('on', i === st.idx));
+      };
+    } else {
+      lbVid.loop = true;
+      lbVid.onended = null;
+      lbVid.src = tileVid.currentSrc || tileVid.querySelector('source').src;
+      lbVid.currentTime = tileVid.currentTime || 0;
+    }
+    lbVid.muted = false;
+    lbVid.play().catch(() => {});
+  }
+
+  lb.classList.add('on');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeIgLightbox(e) {
+  if (e && e.target.closest('.ig-lb-inner')) return;
+  const lb      = document.getElementById('igLightbox');
+  const lbVid   = document.getElementById('igLbVideo');
+  const lbPhoto = document.getElementById('igLbPhoto');
+  lb.classList.remove('on');
+  lbVid.pause();
+  lbVid.onended = null;
+  lbVid.removeAttribute('src');
+  lbVid.load();
+  lbPhoto.classList.remove('active');
+  lbPhoto.removeAttribute('src');
+  delete lbPhoto.dataset.boundTo;
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && document.getElementById('igLightbox').classList.contains('on')) {
+    closeIgLightbox();
+  }
+});
+
 </script>
 </body>
 </html>
